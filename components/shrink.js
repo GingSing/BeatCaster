@@ -10,15 +10,16 @@ AFRAME.registerComponent("shrink", {
       self.data.radius - self.data.radius / 10
     );
 
+    console.log(document.querySelector("a-circle"));
+
     this.eventHandlerFn = function() {
-      console.log(self.el.getAttribute("radius"));
+      console.log(self.el.getAttribute("radius-inner"));
     };
   },
   update: function(oldData) {
     let data = this.data;
     let el = this.el;
     el.addEventListener("click", this.eventHandlerFn);
-    console.log(oldData, data);
   },
   tick: function(time, deltaTime) {
     let data = this.data;
@@ -31,11 +32,17 @@ AFRAME.registerComponent("shrink", {
     }
 
     if (data.radius > 3) {
-      data.radius -= data.radius / 70;
-      el.setAttribute("radius-outer", data.radius);
-      el.setAttribute("radius-inner", data.radius - data.radius / 10);
+      this.decreaseRadius(deltaTime);
     } else {
       el.setAttribute("visible", false);
     }
+  },
+  decreaseRadius: function(deltaTime) {
+    let data = this.data;
+    let el = this.el;
+
+    data.radius -= (1 * data.radius * deltaTime) / 1000;
+    el.setAttribute("radius-outer", data.radius);
+    el.setAttribute("radius-inner", data.radius - data.radius / 10);
   }
 });

@@ -8,8 +8,11 @@
   </head>
   <body>
     <script src="components/shrink.js"></script>
-    <a-scene cursor="rayOrigin: mouse">
-      <a-ring shrink color="red" position="5 5 -10"></a-circle>
+    <script src="components/generator.js"></script>
+    <a-scene generator cursor="rayOrigin: mouse">
+      <a-ring shrink color="red" position="5 5 -10">
+        <a-circle></a-circle>
+      </a-ring>
     </a-scene>
   </body>
 </html>
