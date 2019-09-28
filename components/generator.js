@@ -44,6 +44,7 @@ AFRAME.registerComponent("generator", {
     let text = document.createElement("a-text");
     text.setAttribute("value", gameState.beatNum);
     text.setAttribute("color", "white");
+    text.setAttribute("align", "center");
     text.setAttribute("wrap-count", "1");
 
     let circle = document.createElement("a-circle");
