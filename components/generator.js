@@ -3,26 +3,8 @@ AFRAME.registerComponent("generator", {
     totalTime: { type: "int", default: 0 },
     i: { type: "int", default: 0 }
   },
-  init: function() {},
-  update: function() {},
-  tick: function(time, deltaTime) {
-    let data = this.data;
-    let beatMap = {
-      notes: [
-        { time: 1000 },
-        { time: 1500 },
-        { time: 2000 },
-        { time: 4000 },
-        { time: 4300 },
-        { time: 4300 },
-        { time: 5000 },
-        { time: 6000 },
-        { time: 7000 }
-      ]
-    };
-    data.totalTime += deltaTime;
-    //gamestate
-    if (beatMap.notes[data.i] && data.totalTime > beatMap.notes[data.i].time) {
+  init: function() {
+    for (let i of beatMap.notes) {
       gameState.generatedObjects.push(
         this.generateCircle({
           position: {
@@ -31,9 +13,22 @@ AFRAME.registerComponent("generator", {
             z: -30
           },
           attributes: ["disappearonclick", "shrink"],
-          classes: ["clickable"]
+          classes: []
         })
       );
+    }
+  },
+  update: function() {},
+  tick: function(time, deltaTime) {
+    let el = this.el;
+    let data = this.data;
+    data.totalTime += deltaTime;
+    //gamestate
+    if (beatMap.notes[data.i] && data.totalTime > beatMap.notes[data.i].time) {
+      el.sceneEl.appendChild(
+        gameState.generatedObjects[gameState.currentShownNum]
+      );
+      gameState.currentShownNum++;
       data.i++;
     }
   },
@@ -66,7 +61,6 @@ AFRAME.registerComponent("generator", {
       circle.classList.add(`${extraClass}`);
     }
     circle.appendChild(text);
-    self.el.sceneEl.appendChild(circle);
     return circle;
   },
   generateRandomNumber: function(initNum) {

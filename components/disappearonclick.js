@@ -4,11 +4,10 @@ AFRAME.registerComponent("disappearonclick", {
     let el = this.el;
     this.disappear = () => {
       //gamestate
-      console.log(currentBeatNum, el.getAttribute("num"));
       if (gameState.currentBeatNum == el.getAttribute("num")) {
-        removeFirstGeneratedObjectFromGameState();
         increaseBeatNum();
-        el.parentNode.removeChild(el);
+        addClickable();
+        el.setAttribute("visible", false);
       }
     };
   },
