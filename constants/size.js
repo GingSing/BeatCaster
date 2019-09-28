@@ -1,0 +1,2 @@
+const RADIUS_OPTIMAL_MIN = 5;
+const RADIUS_OPTIMAL_MAX = 7;

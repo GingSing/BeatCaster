@@ -7,12 +7,32 @@
     <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
   </head>
   <body>
+    <script>
+      const gameState = {
+        generatedObjects: [],
+        beatNum: 0,
+        currentBeatNum: 0
+      };
+
+      const removeGeneratedObjectFromGameState = () => {
+        gameState.generatedObjects.shift();
+      };
+
+      const increaseBeatNum = () => {
+        if (gameState.currentBeatNum < 9) {
+          gameState.currentBeatNum++;
+        }
+        console.log(gameState.currentBeatNum);
+      };
+    </script>
     <script src="components/shrink.js"></script>
+    <script src="components/disappearonclick.js"></script>
     <script src="components/generator.js"></script>
-    <a-scene generator cursor="rayOrigin: mouse">
-      <a-ring shrink color="red" position="5 5 -10">
-        <a-circle></a-circle>
-      </a-ring>
+    <a-scene
+      generator
+      raycaster="objects: .clickable"
+      cursor="rayOrigin: mouse"
+    >
     </a-scene>
   </body>
 </html>
