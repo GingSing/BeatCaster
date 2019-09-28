@@ -14,7 +14,7 @@
         currentBeatNum: 0
       };
 
-      const removeGeneratedObjectFromGameState = () => {
+      const removeFirstGeneratedObjectFromGameState = () => {
         gameState.generatedObjects.shift();
       };
 
@@ -22,7 +22,6 @@
         if (gameState.currentBeatNum < 9) {
           gameState.currentBeatNum++;
         }
-        console.log(gameState.currentBeatNum);
       };
     </script>
     <script src="components/shrink.js"></script>

@@ -40,6 +40,12 @@ AFRAME.registerComponent("generator", {
   generateCircle: function(info) {
     let self = this;
     let { position, color, attributes, classes } = info;
+
+    let text = document.createElement("a-text");
+    text.setAttribute("value", gameState.beatNum);
+    text.setAttribute("color", "white");
+    text.setAttribute("wrap-count", "1");
+
     let circle = document.createElement("a-circle");
     circle.setAttribute("material", {
       color
@@ -58,6 +64,7 @@ AFRAME.registerComponent("generator", {
     for (let extraClass of classes) {
       circle.classList.add(`${extraClass}`);
     }
+    circle.appendChild(text);
     self.el.sceneEl.appendChild(circle);
     return circle;
   },

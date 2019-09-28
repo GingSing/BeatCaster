@@ -21,7 +21,7 @@ AFRAME.registerComponent("shrink", {
     if (data.radius > 3) {
       this.decreaseRadius(deltaTime);
     } else {
-      removeGeneratedObjectFromGameState();
+      removeFirstGeneratedObjectFromGameState();
       increaseBeatNum();
       el.parentNode.removeChild(el);
     }
