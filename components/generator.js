@@ -17,6 +17,7 @@ AFRAME.registerComponent("generator", {
         })
       );
     }
+    addClickable();
   },
   update: function() {},
   tick: function(time, deltaTime) {
