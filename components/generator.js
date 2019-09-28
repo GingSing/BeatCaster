@@ -12,7 +12,7 @@ AFRAME.registerComponent("generator", {
             y: this.generateRandomNumber(15),
             z: -30
           },
-          attributes: ["disappearonclick", "shrink"],
+          attributes: ["disappearonclick", "shrink", "calculatepoints"],
           classes: []
         })
       );

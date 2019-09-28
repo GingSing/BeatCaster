@@ -12,7 +12,8 @@
         generatedObjects: [],
         beatNum: 0,
         currentBeatNum: 0,
-        currentShownNum: 0
+        currentShownNum: 0,
+        score: 0
       };
 
       const beatMap = {
@@ -39,7 +40,6 @@
 
       const addClickable = () => {
         if (gameState.generatedObjects[gameState.currentBeatNum]) {
-          console.log("added");
           gameState.generatedObjects[gameState.currentBeatNum].classList.add(
             "clickable"
           );
@@ -48,6 +48,7 @@
     </script>
     <script src="components/shrink.js"></script>
     <script src="components/disappearonclick.js"></script>
+    <script src="components/calculatePoints.js"></script>
     <script src="components/generator.js"></script>
     <a-scene
       generator
