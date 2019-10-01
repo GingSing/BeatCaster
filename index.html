@@ -1,60 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>Hello, World! - A-Frame</title>
-    <meta name="description" content="Hello, World! - A-Frame" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>BeatCaster</title>
+
     <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
   </head>
+
   <body>
-    <script>
-      const gameState = {
-        generatedObjects: [],
-        beatNum: 0,
-        currentBeatNum: 0,
-        currentShownNum: 0,
-        score: 0
-      };
-
-      const beatMap = {
-        notes: [
-          { time: 1000 },
-          { time: 1500 },
-          { time: 2000 },
-          { time: 4000 },
-          { time: 4300 },
-          { time: 4300 },
-          { time: 5000 },
-          { time: 6000 },
-          { time: 7000 }
-        ]
-      };
-
-      const removeFirstGeneratedObjectFromGameState = () => {
-        gameState.generatedObjects.shift();
-      };
-
-      const increaseBeatNum = () => {
-        gameState.currentBeatNum++;
-      };
-
-      const addClickable = () => {
-        if (gameState.generatedObjects[gameState.currentBeatNum]) {
-          gameState.generatedObjects[gameState.currentBeatNum].classList.add(
-            "clickable"
-          );
-        }
-      };
-    </script>
-    <script src="components/shrink.js"></script>
-    <script src="components/disappearonclick.js"></script>
-    <script src="components/calculatePoints.js"></script>
+    <script src="gameState.js"></script>
+    <script src="constants.js"></script>
     <script src="components/generator.js"></script>
+    <script src="components/disappearOnClick.js"></script>
+    <script src="components/setClickable.js"></script>
+    <script src="components/shrink.js"></script>
+    <script src="components/givePoints.js"></script>
+    <script src="components/drawLinesBetween.js"></script>
+    <script src="components/showBeam.js"></script>
     <a-scene
       generator
+      setclickable
+      drawlinesbetween
       raycaster="objects: .clickable"
       cursor="rayOrigin: mouse"
     >
+      <a-assets>
+        <img id="ring" src="public/ringWhite.png" />
+      </a-assets>
+      <a-camera>
+        <a-cursor showBeam></a-cursor>
+      </a-camera>
+      </a-entity>
     </a-scene>
   </body>
 </html>

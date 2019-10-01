@@ -1,36 +1,23 @@
 AFRAME.registerComponent("shrink", {
-  schema: {
-    radius: { type: "int", default: 10 }
-  },
-  init: function() {
-    let data = this.data;
-    let el = this.el;
-    el.setAttribute("radius", data.radius);
-  },
-  update: function(oldData) {},
-  tick: function(time, deltaTime) {
-    let data = this.data;
-    let el = this.el;
+    tick: function (time, deltaTime) {
+        let el = this.el;
+        let radius = el.getAttribute("width") / 2;
 
-    if (data.radius < 7 && data.radius > 5) {
-      el.setAttribute("material", { color: "blue" });
-    } else if (el.getAttribute("color") !== "blue") {
-      el.setAttribute("material", { color: "red" });
+        if (radius > 3) {
+            this.decreaseRadius(deltaTime);
+        } else {
+            increaseBeatNum();
+            el.sceneEl.removeChild(el);
+        }
+    },
+    decreaseRadius: function (deltaTime) {
+        let el = this.el;
+        let radius = el.getAttribute("width") * 2;
+
+
+
+
+        // el.setAttribute("width", (radius - (2 * radius * deltaTime) / 1000));
+        // el.setAttribute("length", (radius - (2 * radius * deltaTime) / 1000))
     }
-
-    if (data.radius > 3) {
-      this.decreaseRadius(deltaTime);
-    } else {
-      increaseBeatNum();
-      addClickable();
-      el.sceneEl.removeChild(el);
-    }
-  },
-  decreaseRadius: function(deltaTime) {
-    let data = this.data;
-    let el = this.el;
-
-    data.radius -= (1 * data.radius * deltaTime) / 1500;
-    el.setAttribute("radius", data.radius);
-  }
-});
+})
