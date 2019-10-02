@@ -14,8 +14,8 @@ AFRAME.registerComponent("generator", {
       gameState.generatedObjects.push(
         this.generateRing({
           position: {
-            x: this.generateRandomNumber(15),
-            y: this.generateRandomPositive(15) + 4,
+            x: beatMap.notes.position.x || this.generateRandomNumber(15),
+            y: beatMap.notes.position.y || this.generateRandomPositive(15) + 4,
             z: -30
           },
           color: "red",
