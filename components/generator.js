@@ -15,11 +15,11 @@ AFRAME.registerComponent("generator", {
         this.generateRing({
           position: {
             x: this.generateRandomNumber(15),
-            y: this.generateRandomNumber(15),
+            y: this.generateRandomPositive(15) + 4,
             z: -30
           },
           color: "red",
-          radius: 5,
+          radius: 10,
           //will do ->
           attributes: [
             "disappearonclick",
@@ -31,7 +31,9 @@ AFRAME.registerComponent("generator", {
         })
       );
     }
-    console.log(gameState.generatedObjects);
+  },
+  update: function() {
+    gameState.generated = true;
   },
   tick: function(time, deltaTime) {
     let el = this.el;
@@ -40,7 +42,7 @@ AFRAME.registerComponent("generator", {
     //gamestate
     if (
       beatMap.notes[data.i] &&
-      data.elapsedTime > beatMap.notes[data.i].time
+      data.elapsedTime > beatMap.notes[data.i].time - 250
     ) {
       el.sceneEl.appendChild(
         gameState.generatedObjects[gameState.currentShownNum]
@@ -56,7 +58,7 @@ AFRAME.registerComponent("generator", {
     text.setAttribute("value", gameState.beatNum);
     text.setAttribute("color", "white");
     text.setAttribute("align", "center");
-    text.setAttribute("wrap-count", "1");
+    text.setAttribute("wrap-count", "3");
 
     let circle = document.createElement("a-circle");
     circle.setAttribute("material", {
@@ -87,7 +89,7 @@ AFRAME.registerComponent("generator", {
     text.setAttribute("value", gameState.beatNum);
     text.setAttribute("color", "white");
     text.setAttribute("align", "center");
-    text.setAttribute("wrap-count", "1");
+    text.setAttribute("wrap-count", "3");
 
     let ring = document.createElement("a-image");
     ring.setAttribute("src", "#ring");
@@ -99,8 +101,8 @@ AFRAME.registerComponent("generator", {
       y: position.y,
       z: position.z
     });
-    ring.setAttribute("width", radius * 2);
-    ring.setAttribute("height", radius * 2);
+    ring.setAttribute("width", radius);
+    ring.setAttribute("height", radius);
     //gamestate
     ring.setAttribute("num", gameState.beatNum++);
     for (let attribute of attributes) {
@@ -111,12 +113,15 @@ AFRAME.registerComponent("generator", {
       ring.classList.add(`${extraClass}`);
     }
     ring.appendChild(text);
-    console.log(ring);
     return ring;
   },
   generateRandomNumber: function(initNum) {
     let num = Math.floor(Math.random() * initNum) + 1;
     num *= Math.floor(Math.random() * 2) == 1 ? 1 : -1;
+    return num;
+  },
+  generateRandomPositive: function(initNum) {
+    let num = Math.floor(Math.random() * initNum) + 1;
     return num;
   }
 });

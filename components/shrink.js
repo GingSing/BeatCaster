@@ -1,23 +1,22 @@
 AFRAME.registerComponent("shrink", {
-    tick: function (time, deltaTime) {
-        let el = this.el;
-        let radius = el.getAttribute("width") / 2;
+  tick: function(time, deltaTime) {
+    let el = this.el;
+    let radius = el.getAttribute("width");
 
-        if (radius > 3) {
-            this.decreaseRadius(deltaTime);
-        } else {
-            increaseBeatNum();
-            el.sceneEl.removeChild(el);
-        }
-    },
-    decreaseRadius: function (deltaTime) {
-        let el = this.el;
-        let radius = el.getAttribute("width") * 2;
-
-
-
-
-        // el.setAttribute("width", (radius - (2 * radius * deltaTime) / 1000));
-        // el.setAttribute("length", (radius - (2 * radius * deltaTime) / 1000))
+    if (radius > constants.SMALLEST_RADIUS) {
+      this.decreaseRadius(deltaTime);
+    } else {
+      increaseBeatNum();
+      if (el.sceneEl.contains(el)) {
+        el.sceneEl.removeChild(el);
+      }
     }
-})
+  },
+  decreaseRadius: function(deltaTime) {
+    let el = this.el;
+    let radius = el.getAttribute("width");
+
+    el.setAttribute("width", radius - (1 * radius * deltaTime) / 1000);
+    el.setAttribute("height", radius - (1 * radius * deltaTime) / 1000);
+  }
+});
