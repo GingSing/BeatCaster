@@ -55,7 +55,8 @@ AFRAME.registerComponent("generator", {
             "disappearonclick",
             "shrink",
             "givepoints",
-            "changecolor"
+            "changecolor",
+            "increasebeatnumonremove"
           ],
           classes: []
         })

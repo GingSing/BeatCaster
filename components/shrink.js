@@ -7,10 +7,22 @@ AFRAME.registerComponent("shrink", {
       if (radius > constants.SMALLEST_RADIUS) {
         this.decreaseRadius(deltaTime);
       } else {
-        increaseBeatNum();
         if (el.sceneEl.contains(el)) {
           el.sceneEl.removeChild(el);
         }
+      }
+
+      let maxPerfectRadius =
+        constants.PERFECT_RADIUS + constants.PERFECT_RADIUS_OFFSET;
+      let minPerfectRadius =
+        constants.PERFECT_RADIUS - constants.PERFECT_RADIUS_OFFSET;
+      if (
+        (radius > maxPerfectRadius || radius < minPerfectRadius) &&
+        radius > constants.SMALLEST_RADIUS
+      ) {
+        el.setAttribute("color", "green");
+      } else if (radius < maxPerfectRadius && radius > minPerfectRadius) {
+        el.setAttribute("color", "blue");
       }
     }
   },
