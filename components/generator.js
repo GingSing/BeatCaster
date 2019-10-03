@@ -10,12 +10,16 @@ AFRAME.registerComponent("generator", {
     }
   },
   init: function() {
-    for (let i of beatMap.notes) {
+    for (let i in beatMap.notes) {
       gameState.generatedObjects.push(
         this.generateRing({
           position: {
-            x: beatMap.notes.position.x || this.generateRandomNumber(15),
-            y: beatMap.notes.position.y || this.generateRandomPositive(15) + 4,
+            x: beatMap.notes[i].position
+              ? beatMap.notes[i].position.x
+              : this.generateRandomNumber(15),
+            y: beatMap.notes[i].position
+              ? beatMap.notes[i].position.y
+              : this.generateRandomPositive(15) + 4,
             z: -30
           },
           color: "red",
