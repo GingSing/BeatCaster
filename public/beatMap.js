@@ -295,44 +295,44 @@ const beatMap = {
     { time: 153286.69999999998, position: { x: 0, y: 10 } },
     { time: 153521.64200000002, position: { x: 0, y: 16 } },
     { time: 153755.619, position: { x: 0, y: 21 } }, // end 20
-    { time: 154223.788, position: { x: 14, y: 21 } },
-    { time: 154458.784, position: { x: 7, y: 21 } },
-    { time: 154693.13700000002, position: { x: 10, y: 14 } },
-    { time: 155161.413, position: { x: 0, y: 14 } },
-    { time: 155396.19400000002, position: { x: -10, y: 14 } },
-    { time: 155630.65399999998, position: { x: 10, y: 10 } },
-    { time: 156099.198, position: { x: -10, y: 10 } },
-    { time: 156333.443, position: { x: 0, y: 5 } }, // end 21
-    { time: 156568.278, position: { x: -15, y: 21 } },
-    { time: 157036.44700000001, position: { x: 15, y: 21 } },
-    { time: 157505.715, position: { x: -8, y: 21 } },
-    { time: 157740.175, position: { x: 8, y: 21 } },
-    { time: 157974.04499999998, position: { x: 0, y: 21 } },
-    { time: 158208.049, position: { x: 15, y: 21 } },
-    { time: 158442.884, position: { x: -15, y: 21 } },
-    { time: 158911.696, position: { x: 8, y: 21 } },
-    { time: 159146.102, position: { x: -8, y: 21 } },
-    { time: 159380.294, position: { x: 0, y: 21 } },
-    { time: 159615.343, position: { x: 10, y: 16 } },
-    { time: 159849.321, position: { x: -10, y: 16 } },
-    { time: 160083.727, position: { x: 0, y: 10 } },
-    { time: 160318.34699999998, position: { x: 0, y: 16 } },
-    { time: 160786.892, position: { x: 0, y: 21 } }, // end 22
-    { time: 161021.03 },
-    { time: 161255.65 },
-    { time: 161724.355 },
-    { time: 162193.275 },
-    { time: 162662.194 },
-    { time: 162896.386 },
-    { time: 163130.36299999998 },
-    { time: 163365.198 },
-    { time: 163600.033 },
-    { time: 163834.225 },
-    { time: 164071.204 },
-    { time: 164302.394 },
-    { time: 164536.907 },
-    { time: 165005.853 },
-    { time: 165474.424 },
+    { time: 154223.788, position: { x: 14, y: 21 } }, // 1
+    { time: 154458.784, position: { x: 14, y: 15 } }, // 2
+    { time: 154693.13700000002, position: { x: 14, y: 9 } }, // 3
+    { time: 155161.413, position: { x: -14, y: 9 } }, // 4
+    { time: 155396.19400000002, position: { x: -14, y: 15 } }, // 5
+    { time: 155630.65399999998, position: { x: -14, y: 21 } }, // 6
+    { time: 156099.198, position: { x: -7, y: 21 } }, // 7
+    { time: 156333.443, position: { x: 7, y: 21 } }, // 8 , 9 , 10 end 21
+    { time: 156568.278, position: { x: 0, y: 21 } }, // 9
+    { time: 157036.44700000001, position: { x: 0, y: 14 } }, // 10
+    { time: 157505.715, position: { x: -15, y: 21 } },
+    { time: 157740.175, position: { x: 15, y: 21 } },
+    { time: 157974.04499999998, position: { x: -8, y: 21 } },
+    { time: 158208.049, position: { x: 8, y: 21 } },
+    { time: 158442.884, position: { x: 0, y: 21 } },
+    { time: 158911.696, position: { x: 15, y: 21 } },
+    { time: 159146.102, position: { x: -15, y: 21 } },
+    { time: 159380.294, position: { x: 8, y: 21 } },
+    { time: 159615.343, position: { x: -8, y: 21 } },
+    { time: 159849.321, position: { x: 0, y: 21 } },
+    { time: 160083.727, position: { x: 10, y: 16 } },
+    { time: 160318.34699999998, position: { x: -10, y: 16 } },
+    { time: 160786.892, position: { x: 0, y: 10 } },
+    { time: 161021.03, position: { x: 0, y: 16 } },
+    { time: 161255.65, position: { x: 0, y: 21 } }, // end 22
+    { time: 161724.355 }, // 1
+    { time: 162193.275 }, // 2
+    { time: 162662.194 }, // 3
+    { time: 162896.386 }, // 4
+    { time: 163130.36299999998 }, // 5
+    { time: 163365.198 }, // 6
+    { time: 163600.033 }, // 7
+    { time: 163834.225 }, // 8
+    { time: 164071.204 }, // 9
+    { time: 164302.394 }, // 10
+    { time: 164536.907 }, // 11
+    { time: 165005.853 }, //12
+    { time: 165474.424 }, // start Random notes generated
     { time: 165943.371 },
     { time: 166411.91499999998 },
     { time: 166880.647 },
