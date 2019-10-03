@@ -27,11 +27,6 @@ AFRAME.registerComponent("menu", {
     // adds the clickable class to our menu
     menu.classList.add("clickable");
 
-    menu.addEventListener("mousedown", () => {
-      el.sceneEl.setAttribute("generator", "");
-      resumeGame();
-    });
-
     // creates our text element
     let text = document.createElement("a-text");
     text.setAttribute("value", "Play");

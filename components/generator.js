@@ -24,15 +24,17 @@ AFRAME.registerComponent("generator", {
     let data = this.data;
     data.elapsedTime += deltaTime;
     //gamestate
-    if (
-      beatMap.notes[data.i] &&
-      data.elapsedTime > beatMap.notes[data.i].time - 250
-    ) {
-      el.sceneEl.appendChild(
-        gameState.generatedObjects[gameState.currentShownNum]
-      );
-      gameState.currentShownNum++;
-      data.i++;
+    if (gameState.isPlaying) {
+      if (
+        beatMap.notes[data.i] &&
+        data.elapsedTime > beatMap.notes[data.i].time - 250
+      ) {
+        el.sceneEl.appendChild(
+          gameState.generatedObjects[gameState.currentShownNum]
+        );
+        gameState.currentShownNum++;
+        data.i++;
+      }
     }
   },
   generateNotes: function(beatMap, gameState) {
