@@ -302,10 +302,10 @@ const beatMap = {
     { time: 155396.19400000002, position: { x: -14, y: 15 } }, // 5
     { time: 155630.65399999998, position: { x: -14, y: 21 } }, // 6
     { time: 156099.198, position: { x: -7, y: 21 } }, // 7
-    { time: 156333.443, position: { x: 7, y: 21 } }, // 8 , 9 , 10 end 21
+    { time: 156333.443, position: { x: 7, y: 21 } }, // 8
     { time: 156568.278, position: { x: 0, y: 21 } }, // 9
-    { time: 157036.44700000001, position: { x: 0, y: 14 } }, // 10
-    { time: 157505.715, position: { x: -15, y: 21 } },
+    { time: 157036.44700000001, position: { x: 0, y: 14 } }, // 10 end 21
+    { time: 157505.715, position: { x: -15, y: 21 } }, // start 22
     { time: 157740.175, position: { x: 15, y: 21 } },
     { time: 157974.04499999998, position: { x: -8, y: 21 } },
     { time: 158208.049, position: { x: 8, y: 21 } },
@@ -320,18 +320,18 @@ const beatMap = {
     { time: 160786.892, position: { x: 0, y: 10 } },
     { time: 161021.03, position: { x: 0, y: 16 } },
     { time: 161255.65, position: { x: 0, y: 21 } }, // end 22
-    { time: 161724.355 }, // 1
-    { time: 162193.275 }, // 2
-    { time: 162662.194 }, // 3
-    { time: 162896.386 }, // 4
-    { time: 163130.36299999998 }, // 5
-    { time: 163365.198 }, // 6
-    { time: 163600.033 }, // 7
-    { time: 163834.225 }, // 8
-    { time: 164071.204 }, // 9
-    { time: 164302.394 }, // 10
-    { time: 164536.907 }, // 11
-    { time: 165005.853 }, //12
+    { time: 161724.355, position: { x: 12, y: 10 } }, // 1
+    { time: 162193.275, position: { x: -12, y: 10 } }, // 2
+    { time: 162662.194, position: { x: 6, y: 10 } }, // 3
+    { time: 162896.386, position: { x: -6, y: 10 } }, // 4
+    { time: 163130.36299999998, position: { x: 12, y: 10 } }, // 5
+    { time: 163365.198, position: { x: -12, y: 10 } }, // 6
+    { time: 163600.033, position: { x: 6, y: 10 } }, // 7
+    { time: 163834.225, position: { x: -6, y: 10 } }, // 8
+    { time: 164071.204, position: { x: 12, y: 10 } }, // 9
+    { time: 164302.394, position: { x: -12, y: 10 } }, // 10
+    { time: 164536.907, position: { x: 6, y: 10 } }, // 11
+    { time: 165005.853, position: { x: -6, y: 10 } }, //12 end 23
     { time: 165474.424 }, // start Random notes generated
     { time: 165943.371 },
     { time: 166411.91499999998 },
