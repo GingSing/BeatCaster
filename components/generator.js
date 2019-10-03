@@ -22,9 +22,10 @@ AFRAME.registerComponent("generator", {
   tick: function(time, deltaTime) {
     let el = this.el;
     let data = this.data;
-    data.elapsedTime += deltaTime;
-    //gamestate
+    console.log(gameState.isPlaying);
     if (gameState.isPlaying) {
+      data.elapsedTime += deltaTime;
+      //gamestate
       if (
         beatMap.notes[data.i] &&
         data.elapsedTime > beatMap.notes[data.i].time - 250
@@ -57,7 +58,8 @@ AFRAME.registerComponent("generator", {
             "disappearonclick",
             "shrink",
             "givepoints",
-            "changecolor"
+            "changecolor",
+            "increasebeatnumonremove"
           ],
           classes: []
         })
