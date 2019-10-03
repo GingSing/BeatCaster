@@ -31,8 +31,6 @@
       raycaster="objects: .clickable"
       cursor="rayOrigin: mouse" -->
     <a-scene
-      songplayer
-      generator
       setclickable
       drawlinesbetween
       pausemenu
@@ -45,10 +43,19 @@
         <audio id="song" src="song.mp3" preload="auto"></audio>
       </a-assets>
 
+      <a-plane class="clickable" height="1" width="0" pause position="-1 1 -3">
+        <a-text value="Pause" align="center"></a-text>
+      </a-plane>
+
+      <a-plane>
+        <a-text value="Play" align="center"></a-text>
+      </a-plane>
+
       <a-entity environment="preset: starry; dressingAmount: 400"></a-entity>
 
+      <a-sound id="player" songplayer></a-sound>
       <a-text
-        pause
+        play
         class="clickable"
         id="score-element"
         showscore

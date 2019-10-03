@@ -18,16 +18,6 @@ AFRAME.registerComponent("setclickable", {
       this.setNextClickable(gameState);
     }
   },
-  pause: function() {
-    gameState.generatedObjects[gameState.currentBeatNum].classList.remove(
-      "clickable"
-    );
-  },
-  play: function() {
-    gameState.generatedObjects[gameState.currentBeatNum].classList.add(
-      "clickable"
-    );
-  },
   setNextClickable: function(gameState) {
     if (gameState.generatedObjects[gameState.currentBeatNum]) {
       gameState.generatedObjects[gameState.currentBeatNum].classList.add(
