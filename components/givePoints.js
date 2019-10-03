@@ -10,12 +10,8 @@ AFRAME.registerComponent("givepoints", {
       (radius > maxPerfectRadius || radius < minPerfectRadius) &&
       radius > constants.SMALLEST_RADIUS
     ) {
-      console.log("The second one", radius);
-
       gameState.score += 10;
     } else if (radius < maxPerfectRadius && radius > minPerfectRadius) {
-      console.log("The thrid one", radius);
-
       gameState.score += 30;
     } else {
       //   console.log(radius);

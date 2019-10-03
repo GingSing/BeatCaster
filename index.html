@@ -25,10 +25,21 @@
     <script src="components/showScore.js"></script>
     <script src="components/startmenu.js"></script>
     <script src="components/songPlayer.js"></script>
+    <script src="components/pause.js"></script>
+    <script src="components/increaseBeatNumOnRemove.js"></script>
     <!-- Makes mouse trackable put in a-scene
       raycaster="objects: .clickable"
       cursor="rayOrigin: mouse" -->
-    <a-scene songplayer generator setclickable drawlinesbetween menu>
+    <a-scene
+      songplayer
+      generator
+      setclickable
+      drawlinesbetween
+      pausemenu
+      menu
+      raycaster="objects: .clickable"
+      cursor="rayOrigin: mouse"
+    >
       <a-assets>
         <img id="ring" src="public/ringWhite.png" />
         <audio id="song" src="song.mp3" preload="auto"></audio>
@@ -36,7 +47,14 @@
 
       <a-entity environment="preset: starry; dressingAmount: 400"></a-entity>
 
-      <a-text id="score-element" showscore position="-0.35 0.5 -3"></a-text>
+      <a-sound src="url(song.mp3)" autoplay="true" position="0 2 5"></a-sound>
+      <a-text
+        pause
+        class="clickable"
+        id="score-element"
+        showscore
+        position="-0.35 0.5 -3"
+      ></a-text>
 
       <!--Tracking for the vive controllers-->
       <a-entity

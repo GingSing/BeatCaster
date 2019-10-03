@@ -21,6 +21,8 @@ AFRAME.registerComponent("menu", {
     });
     // give it our other componenet that removes elements as an attribute so menu can call it
     menu.setAttribute("disappearonclick", "");
+    //give our component play component
+    menu.setAttribute("play", "");
     // adds the clickable class to our menu
     menu.classList.add("clickable");
 
@@ -35,8 +37,8 @@ AFRAME.registerComponent("menu", {
       z: 0.5
     });
     // appends the menu to the scene and text to the menu
-    this.el.sceneEl.appendChild(menu);
     menu.appendChild(text);
+    this.el.sceneEl.appendChild(menu);
   },
   update: function() {},
   remove: function() {}

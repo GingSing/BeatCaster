@@ -7,9 +7,35 @@ AFRAME.registerComponent("generator", {
     elapsedTime: {
       type: "int",
       default: 0
+    },
+    currentSong: {
+      type: "string",
+      default: ""
     }
   },
   init: function() {
+    this.generateNotes(beatMap, gameState);
+  },
+  update: function() {
+    gameState.generated = true;
+  },
+  tick: function(time, deltaTime) {
+    let el = this.el;
+    let data = this.data;
+    data.elapsedTime += deltaTime;
+    //gamestate
+    if (
+      beatMap.notes[data.i] &&
+      data.elapsedTime > beatMap.notes[data.i].time - 250
+    ) {
+      el.sceneEl.appendChild(
+        gameState.generatedObjects[gameState.currentShownNum]
+      );
+      gameState.currentShownNum++;
+      data.i++;
+    }
+  },
+  generateNotes: function(beatMap, gameState) {
     for (let i in beatMap.notes) {
       gameState.generatedObjects.push(
         this.generateRing({
@@ -34,25 +60,6 @@ AFRAME.registerComponent("generator", {
           classes: []
         })
       );
-    }
-  },
-  update: function() {
-    gameState.generated = true;
-  },
-  tick: function(time, deltaTime) {
-    let el = this.el;
-    let data = this.data;
-    data.elapsedTime += deltaTime;
-    //gamestate
-    if (
-      beatMap.notes[data.i] &&
-      data.elapsedTime > beatMap.notes[data.i].time - 250
-    ) {
-      el.sceneEl.appendChild(
-        gameState.generatedObjects[gameState.currentShownNum]
-      );
-      gameState.currentShownNum++;
-      data.i++;
     }
   },
   generateCircle: function(info) {
