@@ -3,6 +3,7 @@ AFRAME.registerComponent("menu", {
 
   init: function() {
     // create initial menu entity
+    let el = this.el;
     let menu = document.createElement("a-entity");
     // assign it attributes
     menu.setAttribute("geometry", {
@@ -25,6 +26,11 @@ AFRAME.registerComponent("menu", {
     menu.setAttribute("play", "");
     // adds the clickable class to our menu
     menu.classList.add("clickable");
+
+    menu.addEventListener("mousedown", () => {
+      el.sceneEl.setAttribute("generator", "");
+      resumeGame();
+    });
 
     // creates our text element
     let text = document.createElement("a-text");

@@ -3,12 +3,14 @@ AFRAME.registerComponent("shrink", {
     let el = this.el;
     let radius = el.getAttribute("width");
 
-    if (radius > constants.SMALLEST_RADIUS) {
-      this.decreaseRadius(deltaTime);
-    } else {
-      increaseBeatNum();
-      if (el.sceneEl.contains(el)) {
-        el.sceneEl.removeChild(el);
+    if (gameState.isPlaying) {
+      if (radius > constants.SMALLEST_RADIUS) {
+        this.decreaseRadius(deltaTime);
+      } else {
+        increaseBeatNum();
+        if (el.sceneEl.contains(el)) {
+          el.sceneEl.removeChild(el);
+        }
       }
     }
   },
