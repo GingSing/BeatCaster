@@ -28,6 +28,7 @@
     <script src="components/pause.js"></script>
     <script src="components/play.js"></script>
     <script src="components/increaseBeatNumOnRemove.js"></script>
+    <script src="components/chargeBeam.js"></script>
     <!-- Makes mouse trackable put in a-scene
       raycaster="objects: .clickable"
       cursor="rayOrigin: mouse" -->
@@ -80,6 +81,8 @@
 
       <!--Tracking for the vive controllers-->
       <a-entity
+        id="rightHand"
+        chargebeam
         laser-controls="hand: right"
         hand-controls="right"
         haptics="events: triggerdown; dur: 50; force: 0.2"
@@ -91,6 +94,7 @@
       </a-entity>
 
       <a-entity
+        id="leftHand"
         laser-controls="hand: left"
         hand-controls="left"
         haptics="events: triggerdown; dur: 50; force: 0.2"

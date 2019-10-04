@@ -22,7 +22,6 @@ AFRAME.registerComponent("generator", {
   tick: function(time, deltaTime) {
     let el = this.el;
     let data = this.data;
-    console.log(gameState.isPlaying);
     if (gameState.isPlaying) {
       data.elapsedTime += deltaTime;
       //gamestate
