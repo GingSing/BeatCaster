@@ -28,7 +28,7 @@ AFRAME.registerComponent("generator", {
       //gamestate
       if (
         beatMap.notes[data.i] &&
-        data.elapsedTime > beatMap.notes[data.i].time - 250
+        data.elapsedTime > beatMap.notes[data.i].time - 320
       ) {
         el.sceneEl.appendChild(
           gameState.generatedObjects[gameState.currentShownNum]
