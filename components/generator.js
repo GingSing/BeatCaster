@@ -27,7 +27,7 @@ AFRAME.registerComponent("generator", {
       //gamestate
       if (
         beatMap.notes[data.i] &&
-        data.elapsedTime > beatMap.notes[data.i].time - 320
+        data.elapsedTime > beatMap.notes[data.i].time - 300
       ) {
         el.sceneEl.appendChild(
           gameState.generatedObjects[gameState.currentShownNum]
@@ -51,14 +51,15 @@ AFRAME.registerComponent("generator", {
             z: -30
           },
           color: "red",
-          radius: 10,
+          radius: constants.LARGEST_RADIUS,
           //will do ->
           attributes: [
             "disappearonclick",
             "shrink",
             "givepoints",
             "changecolor",
-            "increasebeatnumonremove"
+            "increasebeatnumonremove",
+            "spawnreversecircle"
           ],
           classes: []
         })

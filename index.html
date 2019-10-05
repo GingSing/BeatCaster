@@ -29,6 +29,10 @@
     <script src="components/play.js"></script>
     <script src="components/increaseBeatNumOnRemove.js"></script>
     <script src="components/chargeBeam.js"></script>
+    <script src="components/Feedback/generateBeam.js"></script>
+    <script src="components/Feedback/removeBeam.js"></script>
+    <script src="components/Feedback/reverseShrink.js"></script>
+    <script src="components/spawnReverse.js"></script>
     <!-- Makes mouse trackable put in a-scene
       raycaster="objects: .clickable"
       cursor="rayOrigin: mouse" -->
@@ -48,8 +52,8 @@
         pause
         id="pauseBtn"
         class="clickable"
-        height="1"
-        width="1"
+        height="0.5"
+        width="0.5"
         color="grey"
         position="-1 1 -3"
       >
@@ -84,7 +88,6 @@
         id="rightHand"
         chargebeam
         laser-controls="hand: right"
-        hand-controls="right"
         haptics="events: triggerdown; dur: 50; force: 0.2"
         raycaster="objects: .clickable; far: 50"
         line="color: red; opacity: 0.75"
@@ -96,12 +99,11 @@
       <a-entity
         id="leftHand"
         laser-controls="hand: left"
-        hand-controls="left"
         haptics="events: triggerdown; dur: 50; force: 0.2"
         raycaster="objects: .clickable; far: 50"
         line="color: red; opacity: 0.75"
-        position="0 -0.9 0"
-        rotation="90 0 0"
+        position="0 0 0"
+        rotation="0 0 0"
       >
       </a-entity>
     </a-scene>
