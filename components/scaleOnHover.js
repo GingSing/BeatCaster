@@ -1,0 +1,1 @@
+AFRAME.registerComponenet("scaleonhover", {});
