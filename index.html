@@ -33,6 +33,7 @@
     <script src="components/Feedback/removeBeam.js"></script>
     <script src="components/Feedback/reverseShrink.js"></script>
     <script src="components/spawnReverse.js"></script>
+    <script src="components/removeSelfTimer.js"></script>
     <!-- Makes mouse trackable put in a-scene
       raycaster="objects: .clickable"
       cursor="rayOrigin: mouse" -->
@@ -82,6 +83,14 @@
         showscore
         position="-0.35 0.5 -3"
       ></a-text>
+
+      <!-- <a-ring
+        animation="property: scale; easing: easeInCubic; dur: 1000; from: 0.1 0.1 0.1; to: 1 1 1; loop: 10;"
+        material="color: green; shader: flat"
+        position="5 3 -30"
+        radius-inner="3"
+        radius-outer="3.3"
+      ></a-ring> -->
 
       <!--Tracking for the vive controllers-->
       <a-entity

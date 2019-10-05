@@ -33,40 +33,70 @@ AFRAME.registerComponent("spawnreversecircle", {
   remove: function() {
     let el = this.el;
     let data = this.data;
-
-    el.sceneEl.appendChild(
-      this.generateReverseRing({
-        position: {
-          x: data.x,
-          y: data.y,
-          z: data.z
-        },
-        color: "green",
-        radius: 4,
-        attributes: ["reverseshrink"]
-      })
-    );
+    if (el.getAttribute("width") > constants.SMALLEST_RADIUS) {
+      el.sceneEl.appendChild(
+        this.generateReverseRing2({
+          position: {
+            x: data.x,
+            y: data.y,
+            z: data.z
+          },
+          color: "green",
+          shader: "flat",
+          animation: {
+            property: "scale",
+            easing: "easeInCubic",
+            dur: 150,
+            from: {
+              x: 0.1,
+              y: 0.1,
+              z: 0.1
+            },
+            to: {
+              x: 3.5,
+              y: 3.5,
+              z: 3.5
+            },
+            loop: 1
+          },
+          attributes: ["removeselftimer"]
+        })
+      );
+      console.log(el.sceneEl);
+    }
   },
-  generateReverseRing: function(info) {
-    let { position, color, radius, attributes } = info;
+  generateReverseRing2: function(info) {
+    let { position, color, shader, animation, attributes } = info;
 
-    let ring = document.createElement("a-image");
-    ring.setAttribute("src", "#ring");
-    ring.setAttribute("material", {
-      color
-    });
-    ring.setAttribute("position", {
+    console.log(info);
+
+    let { property, easing, dur, from, to, loop } = animation;
+
+    let aRing = document.createElement("a-ring");
+    aRing.setAttribute("position", {
       x: position.x,
       y: position.y,
       z: position.z
     });
-    ring.setAttribute("width", radius);
-    ring.setAttribute("height", radius);
+    aRing.setAttribute("radius-inner", 3);
+    aRing.setAttribute("radius-outer", 3.1);
+    aRing.setAttribute("material", {
+      shader,
+      color
+    });
+    aRing.setAttribute("animation", {
+      property,
+      easing,
+      dur,
+      from,
+      to,
+      loop
+    });
 
     for (let attribute of attributes) {
-      ring.setAttribute(`${attribute}`, "");
+      aRing.setAttribute(`${attribute}`, "");
     }
 
-    return ring;
+    return aRing;
   }
 });
