@@ -14,7 +14,6 @@ AFRAME.registerComponent("setclickable", {
   },
   tick: function() {
     let data = this.data;
-    console.log(gameState.currentBeatNum);
     if (gameState.currentBeatNum !== data.currentNum) {
       this.setNextClickable(gameState);
     }

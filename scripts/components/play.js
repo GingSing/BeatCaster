@@ -5,7 +5,7 @@ AFRAME.registerComponent("play", {
       console.log("hi");
       // el.sceneEl.components.generator.play();
       if (!el.sceneEl.components.generator) {
-        el.sceneEl.setAttribute("generator", "");
+        el.sceneEl.setAttribute("generator", gameState.currentSong);
       }
       resumeGame();
       el.setAttribute("visible", false);
