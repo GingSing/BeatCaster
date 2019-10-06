@@ -49,6 +49,13 @@
       <a-assets>
         <img id="ring" src="public/ringWhite.png" />
         <audio id="song" src="song.mp3" preload="auto"></audio>
+        <a-mixin
+          scaleonhover
+          id="selection"
+          class="clickable"
+          color="red"
+          geometry="primitive: plane; width: 0.5;  height: 0.25 "
+        ></a-mixin>
       </a-assets>
 
       <!--The pause button-->
@@ -73,39 +80,24 @@
         width="2"
         height="1"
         color="grey"
-        position="0 3 -4"
+        position="0 2 -2"
       >
         <!-- used for containers -->
-        <a-plane
-          scaleonhover
-          id="plane1"
-          scale="1 1 1"
+        <a-entity
+          mixin="selection"
           class="clickable"
-          width="1"
-          height=".25"
-          position="0 2 .1"
-          color="white"
-        ></a-plane>
-        <a-plane
-          scaleonhover
-          id="plane1"
-          scale="1 1 1"
+          position="-0.5 .3 .1"
+        ></a-entity>
+        <a-entity
+          mixin="selection"
           class="clickable"
-          width="1"
-          height=".25"
-          position="0 1.2 .1"
-          color="white"
-        ></a-plane>
-        <a-plane
-          scaleonhover
-          id="plane1"
-          scale="1 1 1"
+          position="-0.5 0 .1"
+        ></a-entity>
+        <a-entity
+          mixin="selection"
           class="clickable"
-          width="1"
-          height=".25"
-          position="0 2.8 .1"
-          color="white"
-        ></a-plane>
+          position="-0.5 -.3 0.1"
+        ></a-entity>
         <a-text value="Play" align="center"></a-text>
       </a-plane>
 
