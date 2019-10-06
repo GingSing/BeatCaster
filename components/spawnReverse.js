@@ -33,6 +33,7 @@ AFRAME.registerComponent("spawnreversecircle", {
   remove: function() {
     let el = this.el;
     let data = this.data;
+    // only generates if you click our beatobj before the smallest radius
     if (el.getAttribute("width") > constants.SMALLEST_RADIUS) {
       el.sceneEl.appendChild(
         this.generateReverseRing2({
@@ -83,11 +84,11 @@ AFRAME.registerComponent("spawnreversecircle", {
       animation__2,
       opacity
     } = info;
-
-    console.log(info);
+    // need to defined the propertys of the animation info that was passed
     let { property2, easing2, dur2, from2, to2 } = animation__2;
     let { property, easing, dur, from, to, loop } = animation;
 
+    // creates and sets all the attributes of the ring that explodes
     let aRing = document.createElement("a-ring");
     aRing.setAttribute("position", {
       x: position.x,
@@ -116,7 +117,7 @@ AFRAME.registerComponent("spawnreversecircle", {
       from: from2,
       to: to2
     });
-
+    // uses a loop just incase you want more attributes(components attached)
     for (let attribute of attributes) {
       aRing.setAttribute(`${attribute}`, "");
     }

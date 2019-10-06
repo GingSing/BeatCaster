@@ -34,9 +34,11 @@
     <script src="components/Feedback/reverseShrink.js"></script>
     <script src="components/spawnReverse.js"></script>
     <script src="components/removeSelfTimer.js"></script>
+    <script src="components/scaleOnHover.js"></script>
     <!-- Makes mouse trackable put in a-scene
       raycaster="objects: .clickable"
       cursor="rayOrigin: mouse" -->
+
     <a-scene
       generator
       setclickable
@@ -84,15 +86,15 @@
         position="-0.35 0.5 -3"
       ></a-text>
 
-      <!-- <a-ring
+      <a-plane
+        scaleonhover
+        id="plane1"
+        scale="1 1 1"
         class="clickable"
-        animation="property: scale; easing: easeInCubic; dur: 1000; from: 0.1 0.1 0.1; to: 1 1 1"
-        animation__2="property: material.opacity; easing: easeInCubic; dur: 1000; from: 1.0 to 0"
-        material="color: green; shader: flat; opacity: 1.0"
-        position="5 3 -20"
-        radius-inner="3"
-        radius-outer="4"
-      ></a-ring> -->
+        width="1"
+        height="1"
+        position="3 2 -5"
+      ></a-plane>
 
       <!--Tracking for the vive controllers-->
       <a-entity
