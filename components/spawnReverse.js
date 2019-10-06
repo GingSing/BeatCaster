@@ -43,6 +43,7 @@ AFRAME.registerComponent("spawnreversecircle", {
           },
           color: "green",
           shader: "flat",
+          opacity: 1.0,
           animation: {
             property: "scale",
             easing: "easeInCubic",
@@ -53,23 +54,38 @@ AFRAME.registerComponent("spawnreversecircle", {
               z: 0.1
             },
             to: {
-              x: 3.5,
-              y: 3.5,
-              z: 3.5
+              x: 2,
+              y: 2,
+              z: 2
             },
             loop: 1
           },
-          attributes: ["removeselftimer"]
+          attributes: ["removeselftimer"],
+          animation__2: {
+            property2: "material.opacity",
+            easing2: "easeInCubic",
+            dur2: 150,
+            from2: 1.0,
+            to2: 0
+          }
         })
       );
       console.log(el.sceneEl);
     }
   },
   generateReverseRing2: function(info) {
-    let { position, color, shader, animation, attributes } = info;
+    let {
+      position,
+      color,
+      shader,
+      animation,
+      attributes,
+      animation__2,
+      opacity
+    } = info;
 
     console.log(info);
-
+    let { property2, easing2, dur2, from2, to2 } = animation__2;
     let { property, easing, dur, from, to, loop } = animation;
 
     let aRing = document.createElement("a-ring");
@@ -79,10 +95,11 @@ AFRAME.registerComponent("spawnreversecircle", {
       z: position.z
     });
     aRing.setAttribute("radius-inner", 3);
-    aRing.setAttribute("radius-outer", 3.1);
+    aRing.setAttribute("radius-outer", 3.2);
     aRing.setAttribute("material", {
       shader,
-      color
+      color,
+      opacity
     });
     aRing.setAttribute("animation", {
       property,
@@ -91,6 +108,13 @@ AFRAME.registerComponent("spawnreversecircle", {
       from,
       to,
       loop
+    });
+    aRing.setAttribute("animation__2", {
+      property: property2,
+      easing: easing2,
+      dur: dur2,
+      from: from2,
+      to: to2
     });
 
     for (let attribute of attributes) {
