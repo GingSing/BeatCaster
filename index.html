@@ -15,6 +15,44 @@
   <body>
     <script src="beatMap.js"></script>
     <script src="scripts/gameState.js"></script>
+    <script>
+      const socket = io();
+      const leaderBoardObj = document.getElementById("leaderBoard");
+      socket.on("selectSong", initialLeaderBoard => {
+        // leaderBoardObj.setAttribute("leaderboard", { initialLeaderBoard });
+        leaderBoard = initialLeaderBoard;
+        // on every note send data through socket
+        // if number greater than whats on list replace and push down
+        // save to database afterwards
+      });
+
+      socket.on("update", newLeaderBoardValue => {
+        let updated = false;
+        for (let i in leaderBoard) {
+          if (leaderBoard[i].socket_id === newLeaderBoardValue.socket_id) {
+            leaderBoard[i] = newLeaderBoardValue;
+            updated = true;
+          }
+        }
+
+        if (!updated) {
+          let nextValue;
+          for (let i = 0; i < 5; i++) {
+            if (
+              !nextValue &&
+              leaderBoard[i].score < newLeaderBoardValue.score
+            ) {
+              nextValue = { ...leaderBoard[i] };
+              leaderBoard[i] = newLeaderBoardValue;
+            } else if (nextValue) {
+              let tempValue = { ...leaderBoard[i] };
+              leaderBoard[i] = nextValue;
+              nextValue = tempValue;
+            }
+          }
+        }
+      });
+    </script>
     <script src="scripts/constants.js"></script>
     <script src="scripts/components/generator.js"></script>
     <script src="scripts/components/disappearOnClick.js"></script>
@@ -36,15 +74,6 @@
     <script src="scripts/components/spawnReverse.js"></script>
     <script src="scripts/components/removeSelfTimer.js"></script>
     <script src="scripts/components/scaleOnHover.js"></script>
-    <script>
-      const socket = io();
-      socket.on("stuff", stuff => {
-        console.log(stuff);
-        // on every note send data through socket
-        // if number greater than whats on list replace and push down
-        // save to database afterwards
-      });
-    </script>
     <!-- Makes mouse trackable put in a-scene
       raycaster="objects: .clickable"
       cursor="rayOrigin: mouse" -->

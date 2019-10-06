@@ -9,6 +9,8 @@ let gameState = {
   isPlaying: false
 };
 
+let leaderBoard = {};
+
 const increaseBeatNum = () => {
   gameState.currentBeatNum++;
 };
