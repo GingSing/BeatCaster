@@ -51,18 +51,21 @@
         <audio id="song" src="song.mp3" preload="auto"></audio>
       </a-assets>
 
+      <!--The pause button-->
       <a-plane
+        scaleonhover
         pause
         id="pauseBtn"
         class="clickable"
-        height="0.5"
-        width="0.5"
+        height="0.3"
+        width="0.8"
         color="grey"
         position="-1 1 -3"
       >
         <a-text value="Pause" align="center"></a-text>
       </a-plane>
 
+      <!-- The Play button-->
       <a-plane
         play
         id="playBtn"
@@ -72,6 +75,37 @@
         color="grey"
         position="0 3 -4"
       >
+        <!-- used for containers -->
+        <a-plane
+          scaleonhover
+          id="plane1"
+          scale="1 1 1"
+          class="clickable"
+          width="1"
+          height=".25"
+          position="0 2 .1"
+          color="white"
+        ></a-plane>
+        <a-plane
+          scaleonhover
+          id="plane1"
+          scale="1 1 1"
+          class="clickable"
+          width="1"
+          height=".25"
+          position="0 1.2 .1"
+          color="white"
+        ></a-plane>
+        <a-plane
+          scaleonhover
+          id="plane1"
+          scale="1 1 1"
+          class="clickable"
+          width="1"
+          height=".25"
+          position="0 2.8 .1"
+          color="white"
+        ></a-plane>
         <a-text value="Play" align="center"></a-text>
       </a-plane>
 
@@ -85,16 +119,6 @@
         showscore
         position="-0.35 0.5 -3"
       ></a-text>
-
-      <a-plane
-        scaleonhover
-        id="plane1"
-        scale="1 1 1"
-        class="clickable"
-        width="1"
-        height="1"
-        position="3 2 -5"
-      ></a-plane>
 
       <!--Tracking for the vive controllers-->
       <a-entity
