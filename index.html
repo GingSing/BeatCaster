@@ -9,32 +9,42 @@
     <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
     <script src="https://unpkg.com/aframe-haptics-component/dist/aframe-haptics-component.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
   </head>
 
   <body>
-    <script src="public/beatMap.js"></script>
-    <script src="gameState.js"></script>
-    <script src="constants.js"></script>
-    <script src="components/generator.js"></script>
-    <script src="components/disappearOnClick.js"></script>
-    <script src="components/setClickable.js"></script>
-    <script src="components/shrink.js"></script>
-    <script src="components/givePoints.js"></script>
-    <script src="components/drawLinesBetween.js"></script>
-    <script src="components/showBeam.js"></script>
-    <script src="components/showScore.js"></script>
-    <script src="components/startmenu.js"></script>
-    <script src="components/songPlayer.js"></script>
-    <script src="components/pause.js"></script>
-    <script src="components/play.js"></script>
-    <script src="components/increaseBeatNumOnRemove.js"></script>
-    <script src="components/chargeBeam.js"></script>
-    <script src="components/Feedback/generateBeam.js"></script>
-    <script src="components/Feedback/removeBeam.js"></script>
-    <script src="components/Feedback/reverseShrink.js"></script>
-    <script src="components/spawnReverse.js"></script>
-    <script src="components/removeSelfTimer.js"></script>
-    <script src="components/scaleOnHover.js"></script>
+    <script src="beatMap.js"></script>
+    <script src="scripts/gameState.js"></script>
+    <script src="scripts/constants.js"></script>
+    <script src="scripts/components/generator.js"></script>
+    <script src="scripts/components/disappearOnClick.js"></script>
+    <script src="scripts/components/setClickable.js"></script>
+    <script src="scripts/components/shrink.js"></script>
+    <script src="scripts/components/givePoints.js"></script>
+    <script src="scripts/components/drawLinesBetween.js"></script>
+    <script src="scripts/components/showBeam.js"></script>
+    <script src="scripts/components/showScore.js"></script>
+    <script src="scripts/components/startmenu.js"></script>
+    <script src="scripts/components/songPlayer.js"></script>
+    <script src="scripts/components/pause.js"></script>
+    <script src="scripts/components/play.js"></script>
+    <script src="scripts/components/increaseBeatNumOnRemove.js"></script>
+    <script src="scripts/components/chargeBeam.js"></script>
+    <script src="scripts/components/Feedback/generateBeam.js"></script>
+    <script src="scripts/components/Feedback/removeBeam.js"></script>
+    <script src="scripts/components/Feedback/reverseShrink.js"></script>
+    <script src="scripts/components/spawnReverse.js"></script>
+    <script src="scripts/components/removeSelfTimer.js"></script>
+    <script src="scripts/components/scaleOnHover.js"></script>
+    <script>
+      const socket = io();
+      socket.on("stuff", stuff => {
+        console.log(stuff);
+        // on every note send data through socket
+        // if number greater than whats on list replace and push down
+        // save to database afterwards
+      });
+    </script>
     <!-- Makes mouse trackable put in a-scene
       raycaster="objects: .clickable"
       cursor="rayOrigin: mouse" -->
@@ -111,7 +121,7 @@
 
       <a-entity environment="preset: starry; dressingAmount: 400"></a-entity>
 
-      <a-sound id="player" songplayer src="src: url(song.mp3)"></a-sound>
+      <a-sound id="player" songplayer src="src: url(lightitup.mp3)"></a-sound>
       <a-text
         play
         class="clickable"
