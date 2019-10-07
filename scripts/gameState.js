@@ -22,6 +22,8 @@ let gameState = {
   isPlaying: false
 };
 
+let leaderBoard = {};
+
 const increaseBeatNum = () => {
   gameState.currentBeatNum++;
 };
@@ -51,5 +53,5 @@ const changeSong = newSong => {
 };
 
 const getLeaderBoard = song => {
-  io.emit("selectSong", song);
+  socket.emit("selectSong", song);
 };
