@@ -1,21 +1,21 @@
 AFRAME.registerComponent("songui", {
-  init: function() {
+  init: async function() {
     let el = this.el;
-    let data = this.data;
-    songs.then(result => {
-      let allSongs = {};
-      // get the song data so we know what to reference
-      for (let song of result) {
-        allSongs = { song };
-      }
-      this.generateSongUi(allSongs, el);
-      return allSongs;
-    });
+    await fetch("http://localhost:5000/songs")
+      .then(res => res.json())
+      .then(data => {
+        songs = { ...data };
+        for (let songNum in songs) {
+          console.log(songNum);
+          this.generateSongUi(songs[songNum], songNum, el);
+        }
+      });
   },
-  // used to send the values of the song selection to the UI
-  generateSongUi: function(songs, el) {
-    console.log(songs.song);
-    el.setAttribute("value", `${songs.song.name}`);
-    el.setAttribute("src", `${songs.song.image}`);
+  // used to set the values of the song that is selected to the UI
+  generateSongUi: function(song, songPosition, el) {
+    el.setAttribute("value", `${song.name}`);
+    el.setAttribute("src", `${song.image}`);
+    console.log(el);
+    el.setAttribute("songnumber", `${songPosition}`);
   }
 });

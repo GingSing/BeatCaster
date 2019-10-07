@@ -14,9 +14,14 @@ AFRAME.registerComponent("generator", {
     }
   },
   init: function() {
-    this.generateNotes(beatMap, gameState);
+    // this.generateNotes(beatMap, gameState);
   },
   update: function() {
+    let data = this.data;
+    gameState.generated = false;
+    this.generateNotes(beatMap, gameState);
+    data.elapsedTime = 0;
+    data.i = 0;
     gameState.generated = true;
   },
   tick: function(time, deltaTime) {

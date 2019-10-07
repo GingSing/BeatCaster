@@ -69,23 +69,41 @@ app.get("/songs", (req, res) => {
     .then(songs => res.json(songs));
 });
 
+app.post("/scores", (req, res) => {
+  let { hits, name, user_id, totalScore, song } = req.body;
+  let newScore = new Score({
+    hits,
+    name,
+    user_id,
+    totalScore,
+    song
+  });
+  if (newScore.save()) {
+    res.send("success");
+  }
+});
+
 io.on("connection", socket => {
-  socket.on("selectSong", async song => {
+  socket.on("selectSong", async userSelection => {
     let scores;
 
-    await Score.find({ name: song }, ["socket_id", "name", "totalScore"], {
-      limit: 5,
-      sort: { totalScore: -1 }
-    })
+    await Score.find(
+      { name: userSelection.song },
+      ["user_id", "name", "totalScore"],
+      {
+        limit: 5,
+        sort: { totalScore: -1 }
+      }
+    )
       .then(data => {
         scores = data;
       })
       .catch(err => console.log(err));
-    io.emit("selectSong", { scores });
+    io.emit("selectSong", { scores, user_id: userSelection.user_id });
   });
   socket.on("update", user => {
     io.emit("update", {
-      socket_id: socket.id,
+      user_id: user.user_id,
       name: user.name,
       value: user.score
     });

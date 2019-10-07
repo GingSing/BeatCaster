@@ -24,8 +24,6 @@ AFRAME.registerComponent("songplayer", {
     // };
   },
   update: function() {
-    // let audio = this.el;
-    // audio.setAttribute("src", "song.mp3");
     // audio.addEventListener("playAudio", () => this.playAudio(audio));
     // audio.addEventListener("pauseAudio", () => this.pauseAudio(audio));
   },
