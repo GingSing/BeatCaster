@@ -64,7 +64,8 @@ AFRAME.registerComponent("generator", {
             "givepoints",
             "changecolor",
             "increasebeatnumonremove",
-            "spawnreversecircle"
+            "spawnreversecircle",
+            "hitsound"
           ],
           classes: []
         })

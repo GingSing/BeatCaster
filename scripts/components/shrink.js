@@ -22,7 +22,7 @@ AFRAME.registerComponent("shrink", {
       ) {
         el.setAttribute("color", "red");
       } else if (radius < maxPerfectRadius && radius > minPerfectRadius) {
-        el.setAttribute("color", "green");
+        el.setAttribute("color", "red");
       }
     }
   },

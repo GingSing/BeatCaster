@@ -14,7 +14,7 @@ AFRAME.registerComponent("songui", {
   generateSongUi: function(song, songPosition, el) {
     el.setAttribute("songnumber", `${songPosition}`);
     el.children[1].setAttribute("value", `${song.name}`);
-    el.children[0].setAttribute("src", "#firstSong");
+    el.children[0].setAttribute("src", "#firstSongImg");
     el.children[2].setAttribute("value", `${song.artist}`);
   }
 });
