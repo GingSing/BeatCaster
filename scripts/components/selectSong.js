@@ -28,7 +28,7 @@ AFRAME.registerComponent("selectsong", {
   },
   selectSong: function(el) {
     let audio = document.getElementById("player");
-    let songNum = el.children[0].getAttribute("songnumber");
+    let songNum = el.getAttribute("songnumber");
 
     resetGameState();
     selectSong(songs[songNum]);

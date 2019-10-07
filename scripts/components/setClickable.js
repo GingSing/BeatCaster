@@ -10,7 +10,6 @@ AFRAME.registerComponent("setclickable", {
 
     //in case game doesn't start at 0
     this.setNextClickable(gameState, data);
-    console.log(gameState.generatedObjects[data.currentNum]);
   },
   tick: function() {
     let data = this.data;

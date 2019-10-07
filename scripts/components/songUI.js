@@ -6,16 +6,15 @@ AFRAME.registerComponent("songui", {
       .then(data => {
         songs = { ...data };
         for (let songNum in songs) {
-          console.log(songNum);
           this.generateSongUi(songs[songNum], songNum, el);
         }
       });
   },
   // used to set the values of the song that is selected to the UI
   generateSongUi: function(song, songPosition, el) {
-    el.setAttribute("value", `${song.name}`);
-    el.setAttribute("src", `${song.image}`);
-    console.log(el);
     el.setAttribute("songnumber", `${songPosition}`);
+    el.children[1].setAttribute("value", `${song.name}`);
+    el.children[0].setAttribute("src", "#firstSong");
+    el.children[2].setAttribute("value", `${song.artist}`);
   }
 });
