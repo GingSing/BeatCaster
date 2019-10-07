@@ -14,6 +14,45 @@
 
   <body>
     <script src="beatMap.js"></script>
+    <script>
+      const socket = io();
+      const leaderBoardObj = document.getElementById("leaderBoard");
+      socket.on("selectSong", details => {
+        // leaderBoardObj.setAttribute("leaderboard", { initialLeaderBoard });
+        leaderBoard = details.scores;
+        gameState.user_id = details.user_id;
+        // on every note send data through socket
+        // if number greater than whats on list replace and push down
+        // save to database afterwards
+      });
+
+      socket.on("update", newLeaderBoardValue => {
+        let updated = false;
+        for (let i in leaderBoard) {
+          if (leaderBoard[i].user_id === newLeaderBoardValue.user_id) {
+            leaderBoard[i] = newLeaderBoardValue;
+            updated = true;
+          }
+        }
+
+        if (!updated) {
+          let nextValue;
+          for (let i = 0; i < 5; i++) {
+            if (
+              !nextValue &&
+              leaderBoard[i].score < newLeaderBoardValue.score
+            ) {
+              nextValue = { ...leaderBoard[i] };
+              leaderBoard[i] = newLeaderBoardValue;
+            } else if (nextValue) {
+              let tempValue = { ...leaderBoard[i] };
+              leaderBoard[i] = nextValue;
+              nextValue = tempValue;
+            }
+          }
+        }
+      });
+    </script>
     <script src="scripts/gameState.js"></script>
     <script src="scripts/constants.js"></script>
     <script src="scripts/components/generator.js"></script>
@@ -38,15 +77,6 @@
     <script src="scripts/components/scaleOnHover.js"></script>
     <script src="scripts/components/songUI.js"></script>
     <script src="scripts/components/selectSong.js"></script>
-    <script>
-      const socket = io();
-      socket.on("stuff", stuff => {
-        console.log(stuff);
-        // on every note send data through socket
-        // if number greater than whats on list replace and push down
-        // save to database afterwards
-      });
-    </script>
     <!-- Makes mouse trackable put in a-scene
       raycaster="objects: .clickable"
       cursor="rayOrigin: mouse" -->
@@ -62,14 +92,17 @@
         <img id="ring" src="ringWhite.png" />
         <a-mixin
           scaleonhover
-          songui
           selectsong
           id="selection"
           class="clickable"
-          color="red"
-          geometry="primitive: plane; width: 0.5;  height: 0.25 "
+          geometry="primitive: plane; width: 2;  height: .4 "
+          material="color: white"
         ></a-mixin>
-        <a-mixin id="sizeimg" geometry="width: 0.2; height: 0.2"></a-mixin>
+        <a-mixin
+          id="sizeimg"
+          geometry="width: 0.2; height: 0.2"
+          position="-.75 0 0"
+        ></a-mixin>
       </a-assets>
 
       <!--The pause button-->
@@ -86,26 +119,32 @@
         <a-text value="Pause" align="center"></a-text>
       </a-plane>
 
-      <a-plane id="start" width="4" height="2" color="grey" position="0 2 -2">
+      <!--Main menu-->
+      <a-plane
+        id="start"
+        songui
+        width="3"
+        height="2"
+        color="grey"
+        position="0 1.4 -2.5"
+      >
         <!-- used for Song containers -->
-        <a-entity mixin="selection" class="clickable" position="-0.5 .3 .1">
-          <a-image songui align="left" mixin="sizeimg"></a-image>
-          <a-text songui align="center"></a-text>
+        <a-entity mixin="selection" class="clickable" position="0 .5 .1">
+          <a-image songui mixin="sizeimg"></a-image>
+          <a-text songui align="center" scale=".5 .5 1"></a-text>
+        </a-entity>
+
+        <a-entity mixin="selection" class="clickable" position="0 0 .1">
         </a-entity>
 
         <a-entity
           mixin="selection"
           class="clickable"
-          position="-0.5 0 .1"
-        ></a-entity>
-
-        <a-entity
-          mixin="selection"
-          class="clickable"
-          position="-0.5 -.3 0.1"
+          position="0 -.5 0.1"
         ></a-entity>
       </a-plane>
 
+      <!-- old play button -->
       <a-plane
         id="playBtn"
         class="clickable"
@@ -118,12 +157,14 @@
         <a-text value="Play" align="center"></a-text>
       </a-plane>
 
+      <!--Leaderboard-->
+      <a-plane leaderboard></a-plane>
+
       <a-entity environment="preset: starry; dressingAmount: 400"></a-entity>
 
       <a-sound id="player" songplayer src="src: url(lightitup.mp3)"></a-sound>
       <a-text
         play
-        class="clickable"
         id="score-element"
         showscore
         position="-0.35 0.5 -3"

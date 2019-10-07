@@ -9,6 +9,7 @@ const scoreSchema = new Schema({
     }
   ],
   name: { type: String, required: true },
+  socket_id: { type: String, required: true },
   totalScore: { type: Number, default: 0 },
   song: { type: mongoose.Schema.ObjectId, ref: "Song" }
 });

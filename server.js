@@ -70,9 +70,25 @@ app.get("/songs", (req, res) => {
 });
 
 io.on("connection", socket => {
-  io.emit("stuff", {
-    name: "hi",
-    socket_id: socket.id
+  socket.on("selectSong", async song => {
+    let scores;
+
+    await Score.find({ name: song }, ["socket_id", "name", "totalScore"], {
+      limit: 5,
+      sort: { totalScore: -1 }
+    })
+      .then(data => {
+        scores = data;
+      })
+      .catch(err => console.log(err));
+    io.emit("selectSong", { scores });
+  });
+  socket.on("update", user => {
+    io.emit("update", {
+      socket_id: socket.id,
+      name: user.name,
+      value: user.score
+    });
   });
 });
 
