@@ -1,21 +1,3 @@
-let songs = {};
-
-let gameState = {
-  currentSong: "",
-  generatedObjects: [],
-  beatNum: 0,
-  currentBeatNum: 0,
-  currentShownNum: 0,
-  score: 0,
-  user_id: "",
-  name: "",
-  song: "",
-  generated: false,
-  isPlaying: false
-};
-
-let leaderBoard;
-
 const generateRandomId = () => {
   return (
     "_" +
@@ -24,6 +6,29 @@ const generateRandomId = () => {
       .substr(2, 9)
   );
 };
+
+let songs = {};
+let gameState;
+
+const resetGameState = () => {
+  gameState = {
+    currentSong: "",
+    generatedObjects: [],
+    hits: [],
+    beatNum: 0,
+    currentBeatNum: 0,
+    currentShownNum: 0,
+    score: 0,
+    user_id: generateRandomId(),
+    name: "Anonymous",
+    song_id: "",
+    generated: false,
+    isPlaying: false,
+    update: false
+  };
+};
+
+resetGameState();
 
 const increaseBeatNum = () => {
   gameState.currentBeatNum++;
@@ -37,34 +42,18 @@ const pauseGame = () => {
   gameState.isPlaying = false;
 };
 
-const resetGameState = () => {
-  gameState = {
-    currentSong: "",
-    generatedObjects: [],
-    beatNum: 0,
-    currentBeatNum: 0,
-    currentShownNum: 0,
-    score: 0,
-    user_id: "",
-    name: "",
-    song: "",
-    generated: false,
-    isPlaying: false
-  };
-};
-
 const changeSong = newSong => {
   gameState.currentSong = newSong;
 };
 
-const getLeaderBoard = song => {
-  socket.emit("selectSong", { song, user_id: generateRandomId() });
+const getLeaderBoard = song_id => {
+  socket.emit("selectSong", { song_id, user_id: gameState.user_id });
 };
 
 const selectSong = songInfo => {
   changeSong(songInfo.name);
-  getLeaderBoard(songInfo.name);
-  gameState.song = songInfo._id;
+  getLeaderBoard(songInfo._id);
+  gameState.song_id = songInfo._id;
 };
 
 const setName = name => {
@@ -73,4 +62,16 @@ const setName = name => {
 
 const setUserId = user_id => {
   gameState.user_id = user_id;
+};
+
+const updateHits = (name, points) => {
+  gameState.hits.push({
+    name,
+    points
+  });
+  socket.emit("update", {
+    user_id: gameState.user_id,
+    name: gameState.name,
+    score: gameState.score
+  });
 };

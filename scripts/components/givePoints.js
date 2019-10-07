@@ -11,10 +11,12 @@ AFRAME.registerComponent("givepoints", {
       radius > constants.SMALLEST_RADIUS
     ) {
       gameState.score += 10;
+      updateHits("Good", 10);
     } else if (radius < maxPerfectRadius && radius > minPerfectRadius) {
       gameState.score += 30;
+      updateHits("Goodest", 30);
     } else {
-      //   console.log(radius);
+      updateHits("Not Good", 0);
     }
   }
 });

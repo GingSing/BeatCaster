@@ -11,7 +11,7 @@ const scoreSchema = new Schema({
   name: { type: String, required: true },
   user_id: { type: String, required: true },
   totalScore: { type: Number, default: 0 },
-  song: { type: mongoose.Schema.ObjectId, ref: "Song" }
+  song_id: { type: mongoose.Schema.ObjectId, ref: "Song" }
 });
 
 module.exports = mongoose.model("Score", scoreSchema);

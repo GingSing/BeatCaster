@@ -1,7 +1,7 @@
 AFRAME.registerComponent("songui", {
   init: async function() {
     let el = this.el;
-    await fetch("http://localhost:5000/songs")
+    await fetch("/songs")
       .then(res => res.json())
       .then(data => {
         songs = { ...data };
