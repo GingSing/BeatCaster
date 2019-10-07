@@ -49,3 +49,7 @@ const resetGameState = () => {
 const changeSong = newSong => {
   gameState.currentSong = newSong;
 };
+
+const getLeaderBoard = song => {
+  io.emit("selectSong", song);
+};

@@ -4,9 +4,8 @@ AFRAME.registerComponent("pause", {
     el.addEventListener("mousedown", () => {
       // el.sceneEl.components.generator.pause();
       pauseGame();
-      let playBtn = document.getElementById("playBtn");
+      let playBtn = document.getElementById("start");
       playBtn.setAttribute("visible", true);
-      playBtn.classList.add("clickable");
     });
   }
 });
