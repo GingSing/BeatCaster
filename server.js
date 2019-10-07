@@ -66,8 +66,7 @@ app.post("/editSong", (req, res) => {
 app.get("/songs", (req, res) => {
   Song.find()
     .populate("beatMap")
-    .then(songs => console.log(songs));
-  res.send("hi");
+    .then(songs => res.json(songs));
 });
 
 io.on("connection", socket => {

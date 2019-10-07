@@ -1,3 +1,16 @@
+const initializeSongs = async function() {
+  return await fetch("http://localhost:5000/songs")
+    .then(res => res.json())
+    .then(data => data);
+};
+
+let songs = initializeSongs();
+
+// songs.then(function(result) {
+//   // get the song data so we know what to reference
+//   console.log(result);
+// });
+
 let gameState = {
   currentSong: "",
   generatedObjects: [],

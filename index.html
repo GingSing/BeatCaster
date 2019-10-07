@@ -36,6 +36,7 @@
     <script src="scripts/components/spawnReverse.js"></script>
     <script src="scripts/components/removeSelfTimer.js"></script>
     <script src="scripts/components/scaleOnHover.js"></script>
+    <script src="scripts/songUI.js"></script>
     <script>
       const socket = io();
       socket.on("stuff", stuff => {
@@ -60,11 +61,13 @@
         <img id="ring" src="ringWhite.png" />
         <a-mixin
           scaleonhover
+          songui
           id="selection"
           class="clickable"
           color="red"
           geometry="primitive: plane; width: 0.5;  height: 0.25 "
         ></a-mixin>
+        <a-mixin id="sizeimg" geometry="width: 0.2; height: 0.2"></a-mixin>
       </a-assets>
 
       <!--The pause button-->
@@ -81,32 +84,32 @@
         <a-text value="Pause" align="center"></a-text>
       </a-plane>
 
-      <!-- The Play button-->
       <a-plane
-        play
         id="playBtn"
         class="clickable"
-        width="2"
-        height="1"
+        width="4"
+        height="2"
         color="grey"
         position="0 2 -2"
       >
-        <!-- used for containers -->
-        <a-entity
-          mixin="selection"
-          class="clickable"
-          position="-0.5 .3 .1"
-        ></a-entity>
+        <!-- used for Song containers -->
+        <a-entity mixin="selection" class="clickable" position="-0.5 .3 .1">
+          <a-image songui align="left" mixin="sizeimg"></a-image>
+          <a-text songui align="center"></a-text>
+        </a-entity>
+
         <a-entity
           mixin="selection"
           class="clickable"
           position="-0.5 0 .1"
         ></a-entity>
+
         <a-entity
           mixin="selection"
           class="clickable"
           position="-0.5 -.3 0.1"
         ></a-entity>
+        <!-- The Play button-->
         <a-text value="Play" align="center"></a-text>
       </a-plane>
 
