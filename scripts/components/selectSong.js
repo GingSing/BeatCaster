@@ -29,13 +29,20 @@ AFRAME.registerComponent("selectsong", {
   selectSong: function(el) {
     let audio = document.getElementById("player");
     let songNum = el.getAttribute("songnumber");
+    let endScreen = document.getElementById("endScreen");
+    let resumeBtn = document.getElementById("resumeBtn");
 
     resetGameState();
     selectSong(songs[songNum]);
     el.sceneEl.setAttribute("generator", gameState.currentSong);
     audio.setAttribute("src", songs[songNum].url);
     audio.components.sound.stopSound();
-    console.log("gamestate", gameState);
+    if (endScreen.getAttribute("visible")) {
+      endScreen.setAttribute("visible", false);
+    }
+    if (resumeBtn.getAttribute("visible")) {
+      resumeBtn.setAttribute("visible", false);
+    }
     resumeGame();
     el.parentEl.setAttribute("visible", false);
   }

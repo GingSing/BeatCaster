@@ -31,11 +31,9 @@ AFRAME.registerComponent("songplayer", {
     let audio = this.el;
     let data = this.data;
     if (gameState.isPlaying && !data.isPlaying) {
-      console.log("play");
       data.isPlaying = true;
       audio.components.sound.playSound();
     } else if (!gameState.isPlaying & data.isPlaying) {
-      console.log("pause");
       data.isPlaying = false;
       audio.components.sound.pauseSound();
     }

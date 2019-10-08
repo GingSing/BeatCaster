@@ -24,7 +24,6 @@ AFRAME.registerComponent("spawnreversecircle", {
       data.y !== el.object3D.position.y ||
       data.z !== el.object3D.position.z
     ) {
-      console.log("changed");
       data.x = el.object3D.position.x;
       data.y = el.object3D.position.y;
       data.z = el.object3D.position.z;
@@ -61,6 +60,11 @@ AFRAME.registerComponent("spawnreversecircle", {
             },
             loop: 1
           },
+          rotation: {
+            x: data.y > 20 ? 30 : 0,
+            y: data.x > 20 ? -30 : data.x < -20 ? 30 : 0,
+            z: 0
+          },
           attributes: ["removeselftimer"],
           animation__2: {
             property2: "material.opacity",
@@ -71,7 +75,6 @@ AFRAME.registerComponent("spawnreversecircle", {
           }
         })
       );
-      console.log(el.sceneEl);
     }
   },
   generateReverseRing2: function(info) {
@@ -82,7 +85,8 @@ AFRAME.registerComponent("spawnreversecircle", {
       animation,
       attributes,
       animation__2,
-      opacity
+      opacity,
+      rotation
     } = info;
     // need to defined the propertys of the animation info that was passed
     let { property2, easing2, dur2, from2, to2 } = animation__2;
@@ -109,6 +113,11 @@ AFRAME.registerComponent("spawnreversecircle", {
       from,
       to,
       loop
+    });
+    aRing.setAttribute("rotation", {
+      x: rotation.x,
+      y: rotation.y,
+      z: rotation.z
     });
     aRing.setAttribute("animation__2", {
       property: property2,

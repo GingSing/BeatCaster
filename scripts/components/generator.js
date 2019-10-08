@@ -55,6 +55,21 @@ AFRAME.registerComponent("generator", {
               : this.generateRandomPositive(15) + 4,
             z: -30
           },
+          rotation: {
+            x: beatMap.notes[i].position
+              ? beatMap.notes[i].position.y > 20
+                ? 30
+                : 0
+              : 0,
+            y: beatMap.notes[i].position
+              ? beatMap.notes[i].position.x > 20
+                ? -30
+                : beatMap.notes[i].position.x < -20
+                ? 30
+                : 0
+              : 0,
+            z: 0
+          },
           color: "red",
           radius: constants.LARGEST_RADIUS,
           //will do ->
@@ -65,7 +80,8 @@ AFRAME.registerComponent("generator", {
             "changecolor",
             "increasebeatnumonremove",
             "spawnreversecircle",
-            "hitsound"
+            "hitsound",
+            "removeonnewgame"
           ],
           classes: []
         })
@@ -104,7 +120,7 @@ AFRAME.registerComponent("generator", {
     return circle;
   },
   generateRing: function(info) {
-    let { position, color, radius, attributes, classes } = info;
+    let { position, rotation, color, radius, attributes, classes } = info;
 
     let text = document.createElement("a-text");
     text.setAttribute("value", gameState.beatNum);
@@ -121,6 +137,12 @@ AFRAME.registerComponent("generator", {
       x: position.x,
       y: position.y,
       z: position.z
+    });
+
+    ring.setAttribute("rotation", {
+      x: rotation.x,
+      y: rotation.y,
+      z: rotation.z
     });
     ring.setAttribute("width", radius);
     ring.setAttribute("height", radius);

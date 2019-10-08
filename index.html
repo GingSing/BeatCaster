@@ -16,7 +16,7 @@
     <script src="beatMap.js"></script>
     <script>
       const socket = io();
-      let leaderBoard;
+      let leaderBoard = [];
       const leaderBoardObj = document.getElementById("leaderBoard");
       socket.on("selectSong", details => {
         // leaderBoardObj.setAttribute("leaderboard", { initialLeaderBoard });
@@ -54,11 +54,12 @@
         //     }
         //   }
         // }
-        console.log(newLeaderBoardValue);
-        console.log(leaderBoard[4]);
-        if (newLeaderBoardValue.totalScore > leaderBoard[4].totalScore) {
+        if (
+          newLeaderBoardValue.totalScore >
+          leaderBoard[leaderBoard.length - 1].totalScore
+        ) {
           let replaced = false;
-          for (let i = 0; i < 5; i++) {
+          for (let i = 0; i < leaderBoard.length; i++) {
             if (leaderBoard[i].user_id === newLeaderBoardValue.user_id) {
               leaderBoard[i] = newLeaderBoardValue;
               replaced = true;
@@ -100,6 +101,7 @@
     <script src="scripts/components/hitSound.js"></script>
     <script src="scripts/components/endGame.js"></script>
     <script src="scripts/components/leaderBoard.js"></script>
+    <script src="scripts/components/removeOnNewGame.js"></script>
     <!-- Makes mouse trackable put in a-scene
       raycaster="objects: .clickable"
       cursor="rayOrigin: mouse" -->
@@ -174,18 +176,18 @@
         <a-text value="Pause" align="center"></a-text>
       </a-plane>
 
-      <!-- old play button
+      <!-- old play button -->
       <a-plane
-        id="playBtn"
+        play
+        id="resumeBtn"
         class="clickable"
         width="1"
         height=".5"
         color="grey"
         position="2 1 -2"
-      >  -->
-      <!-- The Play button
+      >
         <a-text value="Play" align="center"></a-text>
-      </a-plane>  -->
+      </a-plane>
 
       <!--Leaderboard-->
       <a-plane leaderboard position="0 0 -10" width="3" height="3">
@@ -217,12 +219,7 @@
       <a-sound id="sfx" src="src: url(metronome.mp3)" volume="1.5"></a-sound>
 
       <!--Score-->
-      <a-text
-        play
-        id="score-element"
-        showscore
-        position="-0.35 0.5 -3"
-      ></a-text>
+      <a-text id="score-element" showscore position="-0.35 0.5 -3"></a-text>
 
       <!--Tracking for the vive controllers-->
       <a-entity

@@ -22,8 +22,7 @@ AFRAME.registerComponent("leaderboard", {
   //   return true;
   // },
   updateCurrentLeaderScores: function(leaderBoard, el) {
-    console.log(leaderBoard);
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < leaderBoard.length; i++) {
       el.children[i].setAttribute(
         "value",
         `${leaderBoard[i].name} ${leaderBoard[i].totalScore}`

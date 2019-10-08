@@ -27,7 +27,6 @@ AFRAME.registerComponent("chargebeam", {
         let left = document.getElementById("leftHand");
         let rightP = el.getAttribute("position");
         let leftP = left.getAttribute("position");
-        console.log((window.ray = left.getAttribute("raycaster")));
         let xDistance = Math.abs(rightP.x - leftP.x);
         let yDistance = Math.abs(rightP.y - leftP.y);
         let zDistance = Math.abs(rightP.z - leftP.z);
@@ -37,8 +36,6 @@ AFRAME.registerComponent("chargebeam", {
             Math.pow(yDistance, 2) +
             Math.pow(zDistance, 2)
         );
-        // console.log(distance);
-        console.log(left);
 
         el.sceneEl.appendChild(
           this.drawBeam({

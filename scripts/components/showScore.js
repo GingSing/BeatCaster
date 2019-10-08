@@ -10,6 +10,7 @@ AFRAME.registerComponent("showscore", {
     let el = this.el;
     let data = this.data;
     if (data.currentShownScore !== gameState.score) {
+      data.currentShownScore = gameState.score;
       this.setScore(el);
     }
   },

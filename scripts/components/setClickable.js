@@ -2,7 +2,7 @@ AFRAME.registerComponent("setclickable", {
   schema: {
     currentNum: {
       type: "int",
-      default: 0
+      default: -1
     }
   },
   init: function() {
