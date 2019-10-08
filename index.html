@@ -84,7 +84,7 @@
     <script src="scripts/components/drawLinesBetween.js"></script>
     <script src="scripts/components/showBeam.js"></script>
     <script src="scripts/components/showScore.js"></script>
-    <script src="scripts/components/startmenu.js"></script>
+    <!-- <script src="scripts/components/startmenu.js"></script> -->
     <script src="scripts/components/songPlayer.js"></script>
     <script src="scripts/components/pause.js"></script>
     <script src="scripts/components/play.js"></script>
@@ -169,8 +169,9 @@
         class="clickable"
         height="0.3"
         width="0.8"
+        position="-.5 0.01 -1.5"
         color="black"
-        position="-.5 0 -1.5"
+        material="visible: false"
         rotation="-90 0 0"
       >
         <a-text value="Pause" align="center"></a-text>
@@ -179,6 +180,7 @@
       <!-- old play button -->
       <a-plane
         play
+        scaleonhover
         id="resumeBtn"
         class="clickable"
         width="1"
@@ -186,16 +188,23 @@
         color="grey"
         position="2 1 -2"
       >
-        <a-text value="Play" align="center"></a-text>
+        <a-text value="Resume" align="center"></a-text>
       </a-plane>
 
       <!--Leaderboard-->
-      <a-plane leaderboard position="0 0 -10" width="3" height="3">
-        <a-text color="white" position=" -0.5 0.6 0.1"></a-text>
-        <a-text position=" -0.5 0.3 0.1"></a-text>
-        <a-text position=" -0.5 0 0.1"></a-text>
-        <a-text position=" -0.5 -0.3 0.1"></a-text>
-        <a-text position=" -0.5 -0.6 0.1"></a-text>
+      <a-plane
+        leaderboard
+        position="-10 8 -8"
+        width="3"
+        height="3"
+        rotation="45 45 0"
+        material="transparent: true; opacity: 0"
+      >
+        <a-text position=" -0.7 0.6 0.1"></a-text>
+        <a-text position=" -0.7 0.3 0.1"></a-text>
+        <a-text position=" -0.7 0 0.1"></a-text>
+        <a-text position=" -0.7 -0.3 0.1"></a-text>
+        <a-text position=" -0.7 -0.6 0.1"></a-text>
       </a-plane>
 
       <!-- End Game Screen -->
@@ -207,9 +216,9 @@
         position="0 1 -3"
         visible="false"
       >
-        <a-text value="Great Job!"></a-text>
-        <a-text value="Score: 0"></a-text>
-        <a-text value="Back"></a-text>
+        <a-text value="Great Job!" position="-0.5 0.5 .01"></a-text>
+        <a-text value="Score: 0" position="-0.5 0 .01"></a-text>
+        <a-text value="Okay." position="-0.5 -0.5 .01"></a-text>
       </a-plane>
 
       <a-entity environment="preset: starry; dressingAmount: 400"></a-entity>
@@ -218,8 +227,8 @@
 
       <a-sound id="sfx" src="src: url(metronome.mp3)" volume="1.5"></a-sound>
 
-      <!--Score-->
-      <a-text id="score-element" showscore position="-0.35 0.5 -3"></a-text>
+      <!-- Score-->
+      <a-text id="score-element" showscore position="-0.35 0.5 -3.5"></a-text>
 
       <!--Tracking for the vive controllers-->
       <a-entity
