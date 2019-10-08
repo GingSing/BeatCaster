@@ -35,7 +35,7 @@ AFRAME.registerComponent("spawnreversecircle", {
     // only generates if you click our beatobj before the smallest radius
     if (el.getAttribute("width") > constants.SMALLEST_RADIUS) {
       el.sceneEl.appendChild(
-        this.generateReverseRing2({
+        this.generateReverseRing({
           position: {
             x: data.x,
             y: data.y,
@@ -49,9 +49,9 @@ AFRAME.registerComponent("spawnreversecircle", {
             easing: "easeInCubic",
             dur: 150,
             from: {
-              x: 0.1,
-              y: 0.1,
-              z: 0.1
+              x: 0.5,
+              y: 0.5,
+              z: 0.5
             },
             to: {
               x: 2,
@@ -77,7 +77,7 @@ AFRAME.registerComponent("spawnreversecircle", {
       );
     }
   },
-  generateReverseRing2: function(info) {
+  generateReverseRing: function(info) {
     let {
       position,
       color,

@@ -9,24 +9,6 @@ AFRAME.registerComponent("songplayer", {
       default: false
     }
   },
-  init: function() {
-    // this.playAudio = audio => {
-    //   console.log("play");
-    //   if (!gameState.isPlaying) {
-    //     audio.play();
-    //   }
-    // };
-    // this.pauseAudio = audio => {
-    //   console.log("pause");
-    //   if (gameState.isPlaying) {
-    //     audio.pause();
-    //   }
-    // };
-  },
-  update: function() {
-    // audio.addEventListener("playAudio", () => this.playAudio(audio));
-    // audio.addEventListener("pauseAudio", () => this.pauseAudio(audio));
-  },
   tick: function() {
     let audio = this.el;
     let data = this.data;

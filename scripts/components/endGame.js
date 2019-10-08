@@ -42,6 +42,10 @@ AFRAME.registerComponent("endgame", {
               el.setAttribute("visible", true);
               el.children[1].setAttribute("value", `${gameState.score}`);
               resetGameState();
+              document
+                .getElementById("pauseBtn")
+                .setAttribute("visible", false);
+              document.getElementById("pauseBtn").classList.remove("clickable");
             });
         }, 5000);
       }

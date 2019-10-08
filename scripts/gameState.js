@@ -69,9 +69,11 @@ const updateHits = (name, points) => {
     name,
     points
   });
-  socket.emit("update", {
-    user_id: gameState.user_id,
-    name: gameState.name,
-    score: gameState.score
-  });
+  if (points > 0) {
+    socket.emit("update", {
+      user_id: gameState.user_id,
+      name: gameState.name,
+      score: gameState.score
+    });
+  }
 };

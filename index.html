@@ -30,30 +30,6 @@
       });
 
       socket.on("update", newLeaderBoardValue => {
-        // let updated = false;
-        // for (let i in leaderBoard) {
-        //   if (leaderBoard[i].user_id === newLeaderBoardValue.user_id) {
-        //     leaderBoard[i] = newLeaderBoardValue;
-        //     updated = true;
-        //   }
-        // }
-
-        // if (!updated) {
-        //   let nextValue;
-        //   for (let i = 0; i < 5; i++) {
-        //     if (
-        //       !nextValue &&
-        //       leaderBoard[i].score < newLeaderBoardValue.score
-        //     ) {
-        //       nextValue = { ...leaderBoard[i] };
-        //       leaderBoard[i] = newLeaderBoardValue;
-        //     } else if (nextValue) {
-        //       let tempValue = { ...leaderBoard[i] };
-        //       leaderBoard[i] = nextValue;
-        //       nextValue = tempValue;
-        //     }
-        //   }
-        // }
         if (
           newLeaderBoardValue.totalScore >
           leaderBoard[leaderBoard.length - 1].totalScore
@@ -62,6 +38,7 @@
           for (let i = 0; i < leaderBoard.length; i++) {
             if (leaderBoard[i].user_id === newLeaderBoardValue.user_id) {
               leaderBoard[i] = newLeaderBoardValue;
+              leaderBoard.sort((a, b) => b.totalScore - a.totalScore);
               replaced = true;
             }
           }
@@ -84,7 +61,6 @@
     <script src="scripts/components/drawLinesBetween.js"></script>
     <script src="scripts/components/showBeam.js"></script>
     <script src="scripts/components/showScore.js"></script>
-    <!-- <script src="scripts/components/startmenu.js"></script> -->
     <script src="scripts/components/songPlayer.js"></script>
     <script src="scripts/components/pause.js"></script>
     <script src="scripts/components/play.js"></script>
@@ -102,6 +78,7 @@
     <script src="scripts/components/endGame.js"></script>
     <script src="scripts/components/leaderBoard.js"></script>
     <script src="scripts/components/removeOnNewGame.js"></script>
+    <script src="scripts/components/goToMenu.js"></script>
     <!-- Makes mouse trackable put in a-scene
       raycaster="objects: .clickable"
       cursor="rayOrigin: mouse" -->
@@ -135,14 +112,14 @@
         ></a-mixin>
       </a-assets>
 
-      <!--Main menu-->
+      <!--Songs Main menu-->
       <a-plane
         id="start"
         songui
         width="3"
         height="2"
         color="grey"
-        position="-3 1.4 -2.5"
+        position="0 1.4 -2.5"
       >
         <!-- used for Song containers UI -->
         <a-entity songui mixin="selection" class="clickable" position="0 .5 .1">
@@ -150,10 +127,10 @@
           <a-text scale=".5 .5 1" position="-0.3 0.09 0.05"></a-text>
           <a-text scale=".4 .4 1" position="-0.3 -0.07 0.05"></a-text>
         </a-entity>
-        <!--empty-->
+        <!--empty container for future songs-->
         <a-entity mixin="selection" class="clickable" position="0 0 .1">
         </a-entity>
-        <!--empty-->
+        <!--empty container for future songs-->
         <a-entity
           mixin="selection"
           class="clickable"
@@ -166,7 +143,6 @@
         scaleonhover
         pause
         id="pauseBtn"
-        class="clickable"
         height="0.3"
         width="0.8"
         position="-.5 0.01 -1.5"
@@ -177,21 +153,44 @@
         <a-text value="Pause" align="center"></a-text>
       </a-plane>
 
-      <!-- old play button -->
+      <!-- pause menu -->
       <a-plane
-        play
-        scaleonhover
-        id="resumeBtn"
-        class="clickable"
-        width="1"
-        height=".5"
-        color="grey"
-        position="2 1 -2"
+        id="menuPlane"
+        width="2"
+        height="3"
+        material="transparency: true; opacity: 0;"
+        visible="false"
+        position="0 2 -4"
       >
-        <a-text value="Resume" align="center"></a-text>
+        <a-box
+          gotomenu
+          scaleonhover
+          id="menuBtn"
+          width="1"
+          height=".5"
+          depth=".5"
+          color="#F0E68C"
+          position="0 0.5 0.1"
+        >
+          <a-light type="point" color="blue" intensity="1"></a-light>
+          <a-text value="Menu" align="center" position="0 -0.05 0.51"></a-text>
+        </a-box>
+
+        <a-box
+          play
+          scaleonhover
+          id="resumeBtn"
+          width="1"
+          height=".5"
+          depth=".5"
+          color="grey"
+          position="0 -0.5 0.1"
+        >
+          <a-text value="Resume" align="center" position="0 0 0.51"></a-text>
+        </a-box>
       </a-plane>
 
-      <!--Leaderboard-->
+      <!--Leaderboard (off in the distance)-->
       <a-plane
         leaderboard
         position="-10 8 -8"
@@ -218,13 +217,13 @@
       >
         <a-text value="Great Job!" position="-0.5 0.5 .01"></a-text>
         <a-text value="Score: 0" position="-0.5 0 .01"></a-text>
-        <a-text value="Okay." position="-0.5 -0.5 .01"></a-text>
+        <a-text gotomenu value="Okay." position="-0.5 -0.5 .01"></a-text>
       </a-plane>
-
-      <a-entity environment="preset: starry; dressingAmount: 400"></a-entity>
-
+      <!--Background-->
+      <a-entity environment="preset: starry; dressingAmount: 200"></a-entity>
+      <!--Song loaded-->
       <a-sound id="player" songplayer src="src: url(lightitup.mp3)"></a-sound>
-
+      <!--SFX-->
       <a-sound id="sfx" src="src: url(metronome.mp3)" volume="1.5"></a-sound>
 
       <!-- Score-->
@@ -238,8 +237,6 @@
         haptics="events: triggerdown; dur: 50; force: 0.2"
         raycaster="objects: .clickable; far: 50"
         line="color: red; opacity: 0.75"
-        position="0 -0.9 0"
-        rotation="90 0 0"
       >
       </a-entity>
 
@@ -248,7 +245,7 @@
         laser-controls="hand: left"
         haptics="events: triggerdown; dur: 50; force: 0.2"
         raycaster="objects: .clickable; far: 50"
-        line="color: red; opacity: 0.75"
+        line="color: blue; opacity: 0.75"
         position="0 -0.9 0"
         rotation="90 0 0"
       >

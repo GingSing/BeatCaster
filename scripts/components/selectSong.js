@@ -30,7 +30,7 @@ AFRAME.registerComponent("selectsong", {
     let audio = document.getElementById("player");
     let songNum = el.getAttribute("songnumber");
     let endScreen = document.getElementById("endScreen");
-    let resumeBtn = document.getElementById("resumeBtn");
+    let menuPlane = document.getElementById("menuPlane");
 
     resetGameState();
     selectSong(songs[songNum]);
@@ -40,8 +40,8 @@ AFRAME.registerComponent("selectsong", {
     if (endScreen.getAttribute("visible")) {
       endScreen.setAttribute("visible", false);
     }
-    if (resumeBtn.getAttribute("visible")) {
-      resumeBtn.setAttribute("visible", false);
+    if (menuPlane.getAttribute("visible")) {
+      menuPlane.setAttribute("visible", false);
     }
     resumeGame();
     el.parentEl.setAttribute("visible", false);

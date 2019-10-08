@@ -89,44 +89,49 @@ AFRAME.registerComponent("generator", {
     }
   },
   generateCircle: function(info) {
-    let { position, color, radius, attributes, classes } = info;
+    let { position, rotation, color, radius } = info;
 
     let text = document.createElement("a-text");
     text.setAttribute("value", gameState.beatNum);
     text.setAttribute("color", "white");
     text.setAttribute("align", "center");
     text.setAttribute("wrap-count", "3");
+    text.setAttribute("position", {
+      x: 0,
+      y: 0,
+      z: 0.1
+    });
 
     let circle = document.createElement("a-circle");
     circle.setAttribute("material", {
-      color
+      color,
+      shader: "flat"
     });
     circle.setAttribute("position", {
       x: position.x,
       y: position.y,
-      z: position.z
+      z: position.z - 0.1
+    });
+
+    circle.setAttribute("rotation", {
+      x: rotation.x,
+      y: rotation.y,
+      z: rotation.z
     });
     circle.setAttribute("radius", radius);
     //gamestate
-    circle.setAttribute("num", gameState.beatNum++);
-    for (let attribute of attributes) {
-      circle.setAttribute(`${attribute}`, "");
-    }
-
-    for (let extraClass of classes) {
-      circle.classList.add(`${extraClass}`);
-    }
+    circle.setAttribute("num", gameState.beatNum);
     circle.appendChild(text);
     return circle;
   },
   generateRing: function(info) {
     let { position, rotation, color, radius, attributes, classes } = info;
 
-    let text = document.createElement("a-text");
-    text.setAttribute("value", gameState.beatNum);
-    text.setAttribute("color", "white");
-    text.setAttribute("align", "center");
-    text.setAttribute("wrap-count", "3");
+    // let text = document.createElement("a-text");
+    // text.setAttribute("value", gameState.beatNum);
+    // text.setAttribute("color", "white");
+    // text.setAttribute("align", "center");
+    // text.setAttribute("wrap-count", "3");
 
     let ring = document.createElement("a-image");
     ring.setAttribute("src", "#ring");
@@ -155,7 +160,15 @@ AFRAME.registerComponent("generator", {
     for (let extraClass of classes) {
       ring.classList.add(`${extraClass}`);
     }
-    ring.appendChild(text);
+
+    let circle = this.generateCircle({
+      ...info,
+      position: { x: 0, y: 0, z: 0 },
+      rotation: { x: 0, y: 0, z: 0 },
+      radius: constants.SMALLEST_RADIUS / 2
+    });
+    ring.appendChild(circle);
+    // ring.appendChild(text);
     return ring;
   },
   generateRandomNumber: function(initNum) {

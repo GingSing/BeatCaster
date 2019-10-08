@@ -1,18 +1,13 @@
-AFRAME.registerComponent("play", {
+AFRAME.registerComponent("gotomenu", {
   schema: {
     visible: {
       type: "boolean",
       default: false
     }
   },
-  init: function() {
+  update: function() {
     let el = this.el;
-    el.addEventListener("mousedown", () => {
-      let songSelect = document.getElementById("start");
-      songSelect.setAttribute("visible", false);
-      resumeGame();
-      el.parentEl.setAttribute("visible", false);
-    });
+    el.addEventListener("mousedown", () => this.goToMenu(el));
   },
   tick: function() {
     let data = this.data;
@@ -28,5 +23,10 @@ AFRAME.registerComponent("play", {
       }
       data.visible = elVisible;
     }
+  },
+  goToMenu: function(el) {
+    el.parentEl.setAttribute("visible", false);
+    let songSelect = document.getElementById("start");
+    songSelect.setAttribute("visible", true);
   }
 });
