@@ -1,4 +1,4 @@
-const beatMap = {
+const beatMap2 = {
   notes: [
     { time: 967.573 },
     { time: 5016.102 },

@@ -53,6 +53,7 @@ const getLeaderBoard = song_id => {
 const selectSong = songInfo => {
   changeSong(songInfo.name);
   getLeaderBoard(songInfo._id);
+  changeBeatMap(songInfo.beatMap);
   gameState.song_id = songInfo._id;
 };
 
