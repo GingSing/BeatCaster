@@ -32,8 +32,24 @@ AFRAME.registerComponent("spawnreversecircle", {
   remove: function() {
     let el = this.el;
     let data = this.data;
+    let radius = this.el.getAttribute("width");
+
+    let maxPerfectRadius =
+      constants.PERFECT_RADIUS + constants.PERFECT_RADIUS_OFFSET;
+    let minPerfectRadius =
+      constants.PERFECT_RADIUS - constants.PERFECT_RADIUS_OFFSET;
     // only generates if you click our beatobj before the smallest radius
-    if (el.getAttribute("width") > constants.SMALLEST_RADIUS) {
+
+    if (radius > constants.SMALLEST_RADIUS) {
+      if (
+        (radius > maxPerfectRadius || radius < minPerfectRadius) &&
+        radius > constants.SMALLEST_RADIUS
+      ) {
+        el.sceneEl.appendChild(this.generateHitMessage("Good", data));
+      } else if (radius < maxPerfectRadius && radius > minPerfectRadius) {
+        el.sceneEl.appendChild(this.generateHitMessage("Perfect", data));
+      }
+
       el.sceneEl.appendChild(
         this.generateReverseRing({
           position: {
@@ -57,8 +73,7 @@ AFRAME.registerComponent("spawnreversecircle", {
               x: 2,
               y: 2,
               z: 2
-            },
-            loop: 1
+            }
           },
           rotation: {
             x: data.y > 20 ? 30 : 0,
@@ -72,6 +87,34 @@ AFRAME.registerComponent("spawnreversecircle", {
             dur2: 150,
             from2: 1.0,
             to2: 0
+          }
+        })
+      );
+    } else {
+      el.sceneEl.appendChild(this.generateHitMessage("Miss", data));
+      el.sceneEl.appendChild(
+        this.generateImage({
+          src: "#x",
+          position: {
+            x: data.x,
+            y: data.y,
+            z: data.z
+          },
+          scale: "1 1 1",
+          animation: {
+            property: "material.opacity",
+            easing: "easeInCubic",
+            dur: 150,
+            from: 1.0,
+            to: 0
+          },
+          width: 5,
+          height: 5,
+          attributes: ["removeselftimer"],
+          rotation: {
+            x: data.y > 20 ? 30 : 0,
+            y: data.x > 20 ? -30 : data.x < -20 ? 30 : 0,
+            z: 0
           }
         })
       );
@@ -90,7 +133,7 @@ AFRAME.registerComponent("spawnreversecircle", {
     } = info;
     // need to defined the propertys of the animation info that was passed
     let { property2, easing2, dur2, from2, to2 } = animation__2;
-    let { property, easing, dur, from, to, loop } = animation;
+    let { property, easing, dur, from, to } = animation;
 
     // creates and sets all the attributes of the ring that explodes
     let aRing = document.createElement("a-ring");
@@ -111,8 +154,7 @@ AFRAME.registerComponent("spawnreversecircle", {
       easing,
       dur,
       from,
-      to,
-      loop
+      to
     });
     aRing.setAttribute("rotation", {
       x: rotation.x,
@@ -130,7 +172,61 @@ AFRAME.registerComponent("spawnreversecircle", {
     for (let attribute of attributes) {
       aRing.setAttribute(`${attribute}`, "");
     }
-
     return aRing;
+  },
+  generateImage: function(info) {
+    let {
+      src,
+      height,
+      width,
+      position,
+      rotation,
+      attributes,
+      animation
+    } = info;
+    let image = document.createElement("a-image");
+    image.setAttribute("src", src);
+    image.setAttribute("position", position);
+    image.setAttribute("rotation", rotation);
+    image.setAttribute("animation", animation);
+    image.setAttribute("width", width);
+    image.setAttribute("height", height);
+
+    for (let attribute of attributes) {
+      image.setAttribute(`${attribute}`, "");
+    }
+
+    return image;
+  },
+  generateHitMessage: function(msg, data) {
+    let text = document.createElement("a-text");
+    text.setAttribute("value", msg);
+    let color;
+    switch (msg) {
+      case "Perfect":
+        color = "yellow";
+        break;
+      case "Good":
+        color = "green";
+        break;
+      case "Miss":
+        color = "white";
+        break;
+    }
+    text.setAttribute("wrap-count", 10);
+    text.setAttribute("align", "center");
+    text.setAttribute("color", color);
+    text.setAttribute("position", {
+      x: data.x,
+      y: data.y,
+      z: data.z + 0.1
+    });
+    text.setAttribute("rotation", {
+      x: data.y > 20 ? 30 : 0,
+      y: data.x > 20 ? -30 : data.x < -20 ? 30 : 0,
+      z: 0
+    });
+    text.setAttribute("removeSelfTimer", "");
+    return text;
   }
 });

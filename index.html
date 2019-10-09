@@ -14,7 +14,6 @@
 
   <body>
     <script src="beatMap.js"></script>
-    <script src="beatMap2.js"></script>
     <script>
       const socket = io();
       let leaderBoard = [];
@@ -22,6 +21,7 @@
       socket.on("selectSong", details => {
         // leaderBoardObj.setAttribute("leaderboard", { initialLeaderBoard });
         let parsedDetails = JSON.parse(details);
+        console.log(details);
         leaderBoard = parsedDetails.scores;
         gameState.user_id = parsedDetails.user_id;
         gameState.update = true;
@@ -95,6 +95,7 @@
         <audio id="lightitup.mp3" src="lightitup.mp3"></audio>
         <audio id="moonlightsonata.mp3" src="moonlightsonata.mp3"></audio>
         <img id="ring" src="ringWhite.png" />
+        <img id="x" src="RedX.png" />
         <img
           id="firstSongImg"
           src="https://s.mxmcdn.net/images-storage/albums4/5/4/4/8/2/8/40828445_800_800.jpg"

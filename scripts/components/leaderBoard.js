@@ -22,19 +22,20 @@ AFRAME.registerComponent("leaderboard", {
   //   return true;
   // },
   updateCurrentLeaderScores: function(leaderBoard, el) {
-    for (let i = 0; i < leaderBoard.length; i++) {
-      el.children[i].setAttribute(
-        "value",
-        `${leaderBoard[i].name} ${leaderBoard[i].totalScore}`
-      );
-      if (leaderBoard[i].user_id === gameState.user_id) {
-        if (el.children[i].getAttribute("color") !== "DAA520") {
-          el.children[i].setAttribute("color", "#DAA520");
+    for (let i = 0; i < 5; i++) {
+      if (leaderBoard[i]) {
+        el.children[i].setAttribute("value", `${leaderBoard[i].totalScore}`);
+        if (leaderBoard[i].user_id === gameState.user_id) {
+          if (el.children[i].getAttribute("color") !== "DAA520") {
+            el.children[i].setAttribute("color", "#DAA520");
+          }
+        } else {
+          if (el.children[i].getAttribute("color") !== "#FFFAF1") {
+            el.children[i].setAttribute("color", "#FFFAF1");
+          }
         }
       } else {
-        if (el.children[i].getAttribute("color") !== "#FFFAF1") {
-          el.children[i].setAttribute("color", "#FFFAF1");
-        }
+        el.children[i].setAttribute("value", ``);
       }
     }
   }
