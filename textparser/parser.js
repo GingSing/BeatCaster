@@ -7,10 +7,10 @@ const beatMap = {
 note you will need to still add X, Y positions manually (for each note) otherwise they will generate at random locations.
 this is just to get you started.
 */
-fs.readFile("Light.txt", { encoding: "UTF-8" }, (err, data) => {
+fs.readFile("textparser/beethoven.txt", { encoding: "UTF-8" }, (err, data) => {
   data.split("beat").map(data => {
     beatMap.notes.push({ time: parseFloat(data.split(" ")[0]) * 1000 });
   });
 
-  fs.writeFileSync("beatMap.js", JSON.stringify(beatMap));
+  fs.writeFileSync("beatMap2.js", JSON.stringify(beatMap));
 });
