@@ -28,7 +28,7 @@ app.get("/", (req, res) => res.sendFile(path.join(__dirname + "/index.html")));
 
 app.get("/beatMap", (req, res) => {});
 
-app.post("/addSong", (req, res) => {
+app.post("/song", (req, res) => {
   let { name, artist, image, url } = req.body;
   const song = new Song({
     name,
@@ -41,7 +41,7 @@ app.post("/addSong", (req, res) => {
   }
 });
 
-app.post("/addBeatMap", (req, res) => {
+app.post("/beatMap", (req, res) => {
   let { notes, song } = req.body;
   const beatMap = new BeatMap({
     song,
