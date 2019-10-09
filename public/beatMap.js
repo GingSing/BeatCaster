@@ -206,7 +206,7 @@ const beatMap = {
     { time: 126565.42, position: { x: 6, y: 8 } },
     { time: 126799.82699999999, position: { x: -10, y: 16 } },
     { time: 127033.857, position: { x: 10, y: 16 } },
-    { time: 127268.424, position: { x: 8, y: 6 } },
+    { time: 127268.424, position: { x: -6, y: 8 } },
     { time: 127502.61600000001, position: { x: 0, y: 24 } },
     { time: 127737.076, position: { x: 6, y: 8 } },
     { time: 127971.375, position: { x: -10, y: 16 } },
