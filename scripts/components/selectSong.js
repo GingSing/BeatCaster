@@ -9,7 +9,9 @@ AFRAME.registerComponent("selectsong", {
       default: false
     }
   },
-  init: function() {},
+  init: function() {
+    this.el.addEventListener("sound-loaded", () => console.log("laoded"));
+  },
   update: function() {
     let el = this.el;
 
@@ -38,9 +40,8 @@ AFRAME.registerComponent("selectsong", {
     let menuPlane = document.getElementById("menuPlane");
 
     resetGameState();
-    selectSong(songs[songNum]);
-    el.sceneEl.setAttribute("generator", gameState.currentSong);
     audio.setAttribute("src", `#${songs[songNum].url}`);
+    selectSong(songs[songNum]);
     audio.components.sound.stopSound();
     if (endScreen.getAttribute("visible")) {
       endScreen.setAttribute("visible", false);
@@ -48,7 +49,10 @@ AFRAME.registerComponent("selectsong", {
     if (menuPlane.getAttribute("visible")) {
       menuPlane.setAttribute("visible", false);
     }
-    resumeGame();
     el.parentEl.setAttribute("visible", false);
+    setTimeout(() => {
+      el.sceneEl.setAttribute("generator", gameState.currentSong);
+      resumeGame();
+    }, 2000);
   }
 });

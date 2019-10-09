@@ -92,7 +92,8 @@
       cursor="rayOrigin: mouse"
     >
       <a-assets>
-        <audio id="lightitup.mp3" src="lightitup.mp3" preload="auto"></audio>
+        <audio id="lightitup.mp3" src="lightitup.mp3"></audio>
+        <audio id="moonlightsonata.mp3" src="moonlightsonata.mp3"></audio>
         <img id="ring" src="ringWhite.png" />
         <img
           id="firstSongImg"
@@ -124,13 +125,16 @@
         position="0 1.4 -2.5"
       >
         <!-- used for Song containers UI -->
-        <a-entity songui mixin="selection" class="clickable" position="0 .5 .1">
+        <a-entity mixin="selection" class="clickable" position="0 .5 .1">
           <a-image mixin="sizeimg" position="-0.6 0 0.05"></a-image>
           <a-text scale=".5 .5 1" position="-0.3 0.09 0.05"></a-text>
           <a-text scale=".4 .4 1" position="-0.3 -0.07 0.05"></a-text>
         </a-entity>
         <!--empty container for future songs-->
         <a-entity mixin="selection" class="clickable" position="0 0 .1">
+          <a-image mixin="sizeimg" position="-0.6 0 0.05"></a-image>
+          <a-text scale=".5 .5 1" position="-0.3 0.09 0.05"></a-text>
+          <a-text scale=".4 .4 1" position="-0.3 -0.07 0.05"></a-text>
         </a-entity>
         <!--empty container for future songs-->
         <a-entity
@@ -224,7 +228,11 @@
       <!--Background-->
       <a-entity environment="preset: starry; dressingAmount: 200"></a-entity>
       <!--Song loaded-->
-      <a-sound id="player" songplayer src="src: url(lightitup.mp3)"></a-sound>
+      <a-sound
+        id="player"
+        songplayer
+        src="src: url(#moonlightsonata.mp3)"
+      ></a-sound>
       <!--SFX-->
       <a-sound id="sfx" src="src: url(metronome.mp3)" volume="1.5"></a-sound>
 
