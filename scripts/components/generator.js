@@ -32,7 +32,7 @@ AFRAME.registerComponent("generator", {
       //gamestate
       if (
         beatMap.notes[data.i] &&
-        data.elapsedTime > beatMap.notes[data.i].time - 300
+        data.elapsedTime > beatMap.notes[data.i].time - 290
       ) {
         el.sceneEl.appendChild(
           gameState.generatedObjects[gameState.currentShownNum]
@@ -165,7 +165,7 @@ AFRAME.registerComponent("generator", {
       ...info,
       position: { x: 0, y: 0, z: 0 },
       rotation: { x: 0, y: 0, z: 0 },
-      radius: constants.SMALLEST_RADIUS / 2
+      radius: constants.PERFECT_RADIUS / 2
     });
     ring.appendChild(circle);
     // ring.appendChild(text);

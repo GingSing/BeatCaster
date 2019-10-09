@@ -12,6 +12,7 @@ AFRAME.registerComponent("pause", {
       pauseGame();
       let menu = document.getElementById("menuPlane");
       menu.setAttribute("visible", true);
+      el.setAttribute("visible", false);
     });
   },
   tick: function() {

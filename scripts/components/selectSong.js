@@ -3,6 +3,10 @@ AFRAME.registerComponent("selectsong", {
     visible: {
       type: "boolean",
       default: false
+    },
+    soundLoaded: {
+      type: "boolean",
+      default: false
     }
   },
   init: function() {},
@@ -10,6 +14,7 @@ AFRAME.registerComponent("selectsong", {
     let el = this.el;
 
     el.addEventListener("mousedown", () => this.selectSong(el));
+    el.addd;
   },
   tick: function() {
     let data = this.data;
@@ -26,7 +31,7 @@ AFRAME.registerComponent("selectsong", {
       data.visible = parentElVisible;
     }
   },
-  selectSong: function(el) {
+  selectSong: function async(el) {
     let audio = document.getElementById("player");
     let songNum = el.getAttribute("songnumber");
     let endScreen = document.getElementById("endScreen");
@@ -35,7 +40,7 @@ AFRAME.registerComponent("selectsong", {
     resetGameState();
     selectSong(songs[songNum]);
     el.sceneEl.setAttribute("generator", gameState.currentSong);
-    audio.setAttribute("src", songs[songNum].url);
+    audio.setAttribute("src", `#${songs[songNum].url}`);
     audio.components.sound.stopSound();
     if (endScreen.getAttribute("visible")) {
       endScreen.setAttribute("visible", false);

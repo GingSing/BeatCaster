@@ -30,7 +30,7 @@ AFRAME.registerComponent("shrink", {
     let el = this.el;
     let radius = el.getAttribute("width");
 
-    el.setAttribute("width", radius - (1 * radius * deltaTime) / 1000);
-    el.setAttribute("height", radius - (1 * radius * deltaTime) / 1000);
+    el.setAttribute("width", radius - (1.4 * radius * deltaTime) / 1000);
+    el.setAttribute("height", radius - (1.4 * radius * deltaTime) / 1000);
   }
 });
