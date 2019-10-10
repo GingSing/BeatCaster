@@ -70,7 +70,7 @@ AFRAME.registerComponent("generator", {
               : 0,
             z: 0
           },
-          color: "white",
+          color: "#000",
           radius: constants.LARGEST_RADIUS,
           //will do ->
           attributes: [
@@ -137,7 +137,8 @@ AFRAME.registerComponent("generator", {
     let ring = document.createElement("a-image");
     ring.setAttribute("src", "#ring");
     ring.setAttribute("material", {
-      color
+      color,
+      shader: "flat"
     });
     ring.setAttribute("position", {
       x: position.x,
