@@ -10,16 +10,24 @@ AFRAME.registerComponent("changehorizoncolor", {
   },
   lightHorizon: function(color) {
     let background = document.getElementById("background");
-    console.log(background.children);
-    let innerSky = background.children[4];
-    console.log(innerSky);
-    innerSky.setAttribute("material", {
-      shader: "standard"
-    });
-    console.log(innerSky);
-    let backgroundEnv = background.getAttribute("environment");
+    let sky = background.children[4];
+    let skyAttr = sky.getAttribute("material");
     background.setAttribute("environment", {
-      horizonColor: "#7FFFD4"
+      horizonColor: this.getRandomColor(),
+      fog: 0.9
     });
+    sky.setAttribute("material", {
+      ...skyAttr,
+      side: "back",
+      color: "#FFF"
+    });
+  },
+  getRandomColor: function() {
+    var letters = "0123456789ABCDEF";
+    var color = "#";
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
   }
 });

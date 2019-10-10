@@ -70,7 +70,7 @@ AFRAME.registerComponent("generator", {
               : 0,
             z: 0
           },
-          color: "red",
+          color: "white",
           radius: constants.LARGEST_RADIUS,
           //will do ->
           attributes: [
