@@ -81,7 +81,8 @@ AFRAME.registerComponent("generator", {
             "increasebeatnumonremove",
             "spawnreversecircle",
             "hitsound",
-            "removeonnewgame"
+            "removeonnewgame",
+            "changehorizoncolor"
           ],
           classes: []
         })

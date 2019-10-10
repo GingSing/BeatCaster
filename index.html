@@ -80,6 +80,7 @@
     <script src="scripts/components/leaderBoard.js"></script>
     <script src="scripts/components/removeOnNewGame.js"></script>
     <script src="scripts/components/goToMenu.js"></script>
+    <script src="scripts/components/Feedback/changeHorizonColor.js"></script>
     <!-- Makes mouse trackable put in a-scene
       raycaster="objects: .clickable"
       cursor="rayOrigin: mouse" -->
@@ -115,6 +116,23 @@
           position="-.75 0 0"
         ></a-mixin>
       </a-assets>
+
+      <!--Lights-->
+      <!-- <a-box width=".2" height=".2" depth=".2" color="color" position="3 3 -15">
+        <a-light type="point" color="red" intensity="1"></a-light>
+      </a-box>
+      <a-box width=".2" height=".2" depth=".2" color="color" position="3 3 -30">
+        <a-light type="point" color="red" intensity="1"></a-light>
+      </a-box> -->
+
+      <!-- <a-box width=".2" height=".2" depth=".2" position="0 -10 -10">
+        <a-light
+          type="ambient"
+          color="#ff0000"
+          intensity="1"
+          animation__color="property:color; dir:alternate; dur:2000; easing:easeInOutSine; loop:true; to:#00ffff"
+        ></a-light>
+      </a-box> -->
 
       <!--Songs Main menu-->
       <a-plane
@@ -179,7 +197,7 @@
           color="#F0E68C"
           position="0 0.5 0.1"
         >
-          <a-light type="point" color="blue" intensity="1"></a-light>
+          <!-- <a-light type="point" color="blue" intensity="1"></a-light> -->
           <a-text value="Menu" align="center" position="0 -0.05 0.51"></a-text>
         </a-box>
 
@@ -226,8 +244,13 @@
         <a-text value="Score: 0" position="-0.5 0 .01"></a-text>
         <a-text gotomenu value="Okay." position="-0.5 -0.5 .01"></a-text>
       </a-plane>
-      <!--Background-->
-      <a-entity environment="preset: starry; dressingAmount: 200"></a-entity>
+      <!--Background Environment-->
+      <a-sky color="#000"></a-sky>
+      <a-entity
+        id="background"
+        environment="preset: starry; dressingAmount: 200; skyType: gradient; horizonColor: #000"
+      >
+      </a-entity>
       <!--Song loaded-->
       <a-sound
         id="player"
